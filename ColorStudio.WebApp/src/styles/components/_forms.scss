@@ -1,0 +1,149 @@
+// Common form styles
+.form-container {
+  padding: 24px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  h2 {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 24px;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+
+      &.full-width {
+        grid-column: 1 / -1;
+      }
+    }
+
+    mat-form-field {
+      width: 100%;
+
+      &.mat-mdc-form-field-has-error {
+        .mat-mdc-form-field-wrapper {
+          padding-bottom: 0;
+        }
+      }
+
+      .mat-mdc-form-field-flex {
+        background-color: transparent;
+      }
+
+      .mat-mdc-text-field-wrapper {
+        background-color: white;
+        border-radius: 4px;
+        border: 1px solid rgba(0, 0, 0, 0.12);
+
+        &:hover {
+          border-color: rgba(0, 0, 0, 0.38);
+        }
+      }
+
+      .mat-mdc-form-field-flex {
+        padding: 0 12px;
+        height: 56px;
+      }
+
+      .mdc-floating-label {
+        font-size: 14px;
+      }
+
+      input, textarea, mat-select {
+        font-size: 14px;
+        font-family: inherit;
+      }
+
+      textarea {
+        height: 120px;
+        resize: vertical;
+      }
+
+      &.mat-focused {
+        .mat-mdc-text-field-wrapper {
+          border-color: #e91e63;
+        }
+      }
+    }
+
+    .toggle-container {
+      display: flex;
+      gap: 24px;
+      margin: 8px 0;
+
+      mat-slide-toggle {
+        .mdc-switch {
+          &.mdc-switch--selected {
+            .mdc-switch__track {
+              background-color: #e91e63;
+            }
+            .mdc-switch__handle {
+              background-color: white;
+            }
+          }
+        }
+      }
+    }
+
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 24px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+
+      button {
+        min-width: 100px;
+        height: 36px;
+        font-size: 14px;
+        font-weight: 500;
+        text-transform: uppercase;
+        border-radius: 4px;
+
+        &[type="button"] {
+          background-color: transparent;
+          color: rgba(0, 0, 0, 0.87);
+
+          &:hover {
+            background-color: rgba(0, 0, 0, 0.04);
+          }
+        }
+
+        &[type="submit"] {
+          background-color: #e91e63;
+          color: white;
+
+          &:hover {
+            background-color: darken(#e91e63, 5%);
+          }
+
+          &:disabled {
+            background-color: rgba(0, 0, 0, 0.12);
+            color: rgba(0, 0, 0, 0.38);
+          }
+        }
+      }
+    }
+  }
+}
+
+// RTL Support
+:host-context([dir="rtl"]) {
+  .form-container {
+    form {
+      .form-actions {
+        justify-content: flex-start;
+      }
+    }
+  }
+} 

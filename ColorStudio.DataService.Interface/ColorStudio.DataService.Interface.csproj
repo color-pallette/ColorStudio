@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Mappers\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ColorStudio.DataAccess.Interface\ColorStudio.DataAccess.Interface.csproj" />
+    <ProjectReference Include="..\ColorStudio.DataAccess\ColorStudio.DataAccess.csproj" />
+  </ItemGroup>
+
+</Project>

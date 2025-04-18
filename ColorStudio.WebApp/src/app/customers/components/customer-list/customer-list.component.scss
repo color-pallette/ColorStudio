@@ -1,0 +1,171 @@
+.customer-list-container {
+  padding: 20px;
+
+  mat-card {
+    box-shadow: none !important;
+    background: transparent;
+
+    mat-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      background: transparent;
+
+      mat-card-title {
+        margin: 0;
+      }
+
+      .header-actions {
+        margin-left: auto;
+      }
+    }
+
+    mat-card-content {
+      margin-top: 20px;
+
+      .search-field {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .filter-field {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      .table-container {
+        position: relative;
+        min-height: 200px;
+        overflow: auto;
+
+        table {
+          width: 100%;
+          background: white;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+          th.mat-header-cell {
+            background: #fafafa;
+            color: rgba(0, 0, 0, 0.87);
+            font-weight: 500;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+          }
+
+          td.mat-cell {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+          }
+
+          .profile-image {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+          }
+
+          .membership-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+
+            &.bronze {
+              background-color: #cd7f32;
+              color: white;
+            }
+
+            &.silver {
+              background-color: #c0c0c0;
+              color: black;
+            }
+
+            &.gold {
+              background-color: #ffd700;
+              color: black;
+            }
+
+            &.platinum {
+              background-color: #e5e4e2;
+              color: black;
+            }
+          }
+
+          .active {
+            color: #4caf50;
+          }
+
+          .inactive {
+            color: #f44336;
+          }
+
+          .mat-column-actions {
+            width: 100px;
+            text-align: center;
+          }
+
+          .mat-column-profileImage {
+            width: 60px;
+          }
+
+          .mat-column-isActive {
+            width: 80px;
+            text-align: center;
+          }
+
+          .mat-column-totalVisits,
+          .mat-column-totalSpent {
+            width: 100px;
+            text-align: right;
+          }
+
+          tr.mat-row:hover {
+            background-color: rgba(0, 0, 0, 0.02);
+          }
+        }
+      }
+
+      mat-paginator {
+        margin-top: 20px;
+        background: transparent;
+      }
+    }
+  }
+
+  .active-status {
+    color: #4caf50;
+  }
+
+  .inactive-status {
+    color: #f44336;
+  }
+
+  mat-icon {
+    vertical-align: middle;
+  }
+}
+
+// RTL Support
+:host-context([dir="rtl"]) {
+  .customer-list-container {
+    mat-card {
+      mat-card-header {
+        .header-actions {
+          margin-left: 0;
+          margin-right: auto;
+        }
+      }
+
+      mat-card-content {
+        .table-container {
+          table {
+            .mat-column-totalVisits,
+            .mat-column-totalSpent {
+              text-align: left;
+            }
+          }
+        }
+      }
+    }
+  }
+} 

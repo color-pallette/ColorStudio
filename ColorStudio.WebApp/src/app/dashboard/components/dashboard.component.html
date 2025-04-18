@@ -1,0 +1,180 @@
+<div class="dashboard-container">
+  <!-- Statistics Cards -->
+  <div class="statistics-grid">
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-icon customers">
+          <mat-icon>people</mat-icon>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value">{{ totalCustomers }}</div>
+          <div class="stat-label">{{ 'dashboard.totalCustomers' | translate }}</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-icon appointments">
+          <mat-icon>event</mat-icon>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value">{{ totalAppointments }}</div>
+          <div class="stat-label">{{ 'dashboard.totalAppointments' | translate }}</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-icon revenue">
+          <mat-icon>attach_money</mat-icon>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value">{{ totalRevenue | currency }}</div>
+          <div class="stat-label">{{ 'dashboard.totalRevenue' | translate }}</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-icon services">
+          <mat-icon>spa</mat-icon>
+        </div>
+        <div class="stat-info">
+          <div class="stat-value">{{ totalServices }}</div>
+          <div class="stat-label">{{ 'dashboard.totalServices' | translate }}</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+  <!-- Recent Appointments -->
+  <mat-card class="data-card">
+    <mat-card-header>
+      <mat-card-title>{{ 'dashboard.recentAppointments' | translate }}</mat-card-title>
+      <button mat-icon-button [matMenuTriggerFor]="appointmentsMenu" [matTooltip]="'common.actions' | translate">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #appointmentsMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>refresh</mat-icon>
+          <span>{{ 'common.refresh' | translate }}</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>download</mat-icon>
+          <span>{{ 'common.export' | translate }}</span>
+        </button>
+      </mat-menu>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="table-container">
+        <table mat-table [dataSource]="appointmentsDataSource" matSort>
+          <ng-container matColumnDef="customer">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'dashboard.customer' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let appointment">{{ appointment.customer }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="service">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'dashboard.service' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let appointment">{{ appointment.service }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'dashboard.date' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let appointment">{{ appointment.date | date }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'dashboard.status' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let appointment">
+              <span [class]="getStatusClass(appointment.status)">
+                {{ 'dashboard.appointmentStatus.' + appointment.status.toLowerCase() | translate }}
+              </span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedAppointmentColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedAppointmentColumns;"></tr>
+        </table>
+      </div>
+      <mat-paginator #appointmentsPaginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        [pageSize]="10"
+        showFirstLastButtons="true"
+        [attr.aria-label]="'dashboard.selectAppointmentPage' | translate">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+
+  <!-- Popular Services -->
+  <mat-card class="data-card">
+    <mat-card-header>
+      <mat-card-title>{{ 'dashboard.popularServices' | translate }}</mat-card-title>
+      <button mat-icon-button [matMenuTriggerFor]="servicesMenu" [matTooltip]="'common.actions' | translate">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+      <mat-menu #servicesMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>refresh</mat-icon>
+          <span>{{ 'common.refresh' | translate }}</span>
+        </button>
+        <button mat-menu-item>
+          <mat-icon>download</mat-icon>
+          <span>{{ 'common.export' | translate }}</span>
+        </button>
+      </mat-menu>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="table-container">
+        <table mat-table [dataSource]="servicesDataSource" matSort>
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'dashboard.serviceName' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let service">{{ service.name }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'dashboard.category' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let service">{{ 'service.categories.' + service.category | translate }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="bookings">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'dashboard.bookings' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let service">{{ service.bookings }}</td>
+          </ng-container>
+
+          <ng-container matColumnDef="revenue">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'dashboard.revenue' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let service">{{ service.revenue | currency }}</td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedServiceColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedServiceColumns;"></tr>
+        </table>
+      </div>
+      <mat-paginator #servicesPaginator
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        [pageSize]="10"
+        showFirstLastButtons="true"
+        [attr.aria-label]="'dashboard.selectServicePage' | translate">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div> 

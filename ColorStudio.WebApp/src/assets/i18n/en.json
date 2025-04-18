@@ -1,0 +1,242 @@
+{
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "close": "Close",
+    "select": "Select",
+    "delete": "Delete",
+    "edit": "Edit",
+    "view": "View",
+    "search": "Search",
+    "loading": "Loading...",
+    "noData": "No data found",
+    "language": "Language",
+    "logoAlt": "ColorStudio Logo",
+    "actions": "Actions",
+    "update": "Update",
+    "refresh": "Refresh",
+    "export": "Export",
+    "filter": "Filter",
+    "filterPlaceholder": "Search in all fields...",
+    "searchPlaceholder": "Search...",
+    "minutes": "minutes",
+    "pagination": {
+      "itemsPerPage": "Items per page",
+      "nextPage": "Next page",
+      "previousPage": "Previous page",
+      "firstPage": "First page",
+      "lastPage": "Last page",
+      "rangeLabel": "{{startIndex}} - {{endIndex}} of {{length}}"
+    },
+    "amount": "Amount",
+    "selectPage": "Select page"
+  },
+  "validation": {
+    "required": "This field is required",
+    "email": "Invalid email address",
+    "minLength": "Enter at least {{min}} characters",
+    "maxLength": "Enter at most {{max}} characters",
+    "pattern": "Invalid format",
+    "invalidHexCode": "Invalid color code",
+    "range": "Value must be between {{min}} and {{max}}",
+    "invalidphone": "Please enter a valid phone number"
+  },
+  "auth": {
+    "login": "Login",
+    "logout": "Logout",
+    "username": "Username",
+    "password": "Password",
+    "forgotPassword": "Forgot Password",
+    "resetPassword": "Reset Password",
+    "usernameRequired": "Username is required",
+    "passwordRequired": "Password is required",
+    "invalidCredentials": "Invalid username or password",
+    "forgotPasswordDescription": "Enter your email and we'll send you a reset link",
+    "emailRequired": "Email is required",
+    "emailInvalid": "Please enter a valid email",
+    "sendResetLink": "Send Reset Link",
+    "resetLinkSent": "Reset link sent",
+    "checkEmail": "Please check your email for the password reset link",
+    "backToLogin": "Back to Login"
+  },
+  "menu": {
+    "home": "Home",
+    "dashboard": "Dashboard",
+    "customers": "Customers",
+    "colors": "Colors",
+    "services": "Services"
+  },
+  "customer": {
+    "title": "Customers",
+    "add": "Add Customer",
+    "edit": "Edit Customer",
+    "details": "Customer Details",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phoneNumber": "Phone Number",
+    "email": "Email",
+    "birthDate": "Birth Date",
+    "address": "Address",
+    "notes": "Notes",
+    "information": "Information",
+    "appointments": "Appointments",
+    "history": "History",
+    "gender": {
+      "title": "Gender",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other"
+    },
+    "skintype": {
+      "title": "Skin Type",
+      "normal": "Normal",
+      "dry": "Dry",
+      "oily": "Oily",
+      "combination": "Combination",
+      "sensitive": "Sensitive"
+    },
+    "hairtypes": {
+      "title": "Hair Type",
+      "normal": "Normal",
+      "dry": "Dry",
+      "oily": "Oily",
+      "damaged": "Damaged",
+      "colortreated": "Color Treated"
+    },
+    "allergies": "Allergies",
+    "membership": {
+      "bronze": "Bronze Member",
+      "silver": "Silver Member",
+      "gold": "Gold Member",
+      "platinum": "Platinum Member"
+    },
+    "status": "Status",
+    "statusActive": "Active",
+    "statusInactive": "Inactive",
+    "addCustomer": "Add Customer",
+    "editCustomer": "Edit Customer",
+    "deleteCustomer": "Delete Customer",
+    "confirmDelete": "Are you sure you want to delete this customer?",
+    "customerList": "Customers",
+    "name": "Name",
+    "phone": "Phone",
+    "membershipLevel": "Membership Level",
+    "totalVisits": "Total Visits",
+    "lastVisitDate": "Last Visit Date",
+    "membershiplevels": {
+      "regular": "Regular",
+      "silver": "Silver",
+      "gold": "Gold",
+      "platinum": "Platinum"
+    }
+  },
+  "color": {
+    "title": "Colors",
+    "add": "Add Color",
+    "edit": "Edit Color",
+    "name": "Color Name",
+    "hexCode": "Color Code",
+    "brand": "Brand",
+    "category": {
+      "title": "Category",
+      "all": "All Categories",
+      "hair": "Hair Colors",
+      "nails": "Nail Colors",
+      "skin": "Skin Colors",
+      "makeup": "Makeup Colors"
+    },
+    "description": "Description",
+    "active": "Active",
+    "inStock": "In Stock",
+    "outOfStock": "Out of Stock",
+    "preview": "Preview",
+    "popularity": "Popularity",
+    "imageUrl": "Image URL",
+    "selectPage": "Select colors page",
+    "allCategories": "All Categories",
+    "pickColor": "Pick Color",
+    "uploadImage": "Upload Image",
+    "takePhoto": "Take Photo",
+    "stockStatus": "Stock Status",
+    "confirmDelete": "Are you sure you want to delete this color?",
+    "imageSelected": "Image Selected",
+    "photoTaken": "Photo Taken",
+    "createSuccess": "Color created successfully",
+    "updateSuccess": "Color updated successfully",
+    "deleteSuccess": "Color deleted successfully",
+    "code": "Color Code",
+    "categories": {
+      "hair": "Hair",
+      "nails": "Nails",
+      "skin": "Skin",
+      "makeup": "Makeup"
+    },
+    "errors": {
+      "loadFailed": "Error loading color",
+      "saveFailed": "Error saving color",
+      "deleteFailed": "Error deleting color",
+      "imageUploadFailed": "Error uploading image",
+      "cameraAccessFailed": "Error accessing camera"
+    }
+  },
+  "service": {
+    "title": "Services",
+    "add": "Add Service",
+    "edit": "Edit Service",
+    "name": "Service Name",
+    "description": "Description",
+    "price": "Price",
+    "duration": "Duration",
+    "category": "Category",
+    "categories": {
+      "hair": "Hair",
+      "skin": "Skin",
+      "nails": "Nails",
+      "makeup": "Makeup"
+    }
+  },
+  "dashboard": {
+    "totalCustomers": "Total Customers",
+    "totalAppointments": "Total Appointments",
+    "totalRevenue": "Total Revenue",
+    "totalServices": "Total Services",
+    "recentAppointments": "Recent Appointments",
+    "popularServices": "Popular Services",
+    "customer": "Customer",
+    "service": "Service",
+    "date": "Date",
+    "status": "Status",
+    "serviceName": "Service Name",
+    "category": "Category",
+    "bookings": "Bookings",
+    "revenue": "Revenue",
+    "itemsPerPage": "Items per page",
+    "selectAppointmentPage": "Select appointments page",
+    "selectServicePage": "Select services page",
+    "appointmentStatus": {
+      "scheduled": "Scheduled",
+      "confirmed": "Confirmed",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "noshow": "No Show"
+    }
+  },
+  "appointment": {
+    "status": {
+      "scheduled": "Scheduled",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "no_show": "No Show"
+    },
+    "staff": "Staff",
+    "price": "Price"
+  },
+  "history": {
+    "type": {
+      "appointment": "Appointment",
+      "purchase": "Purchase",
+      "membership_change": "Membership Change",
+      "note": "Note"
+    }
+  }
+} 

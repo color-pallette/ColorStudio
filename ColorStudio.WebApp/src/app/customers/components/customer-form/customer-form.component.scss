@@ -1,0 +1,134 @@
+.customer-form-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  mat-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+
+    mat-card-header {
+      padding: 16px 24px;
+      border-radius: 8px 8px 0 0;
+      margin: -16px -16px 16px -16px;
+
+      mat-card-title {
+        font-size: 24px;
+        margin: 0;
+        color: #e91e63;
+        font-weight: 500;
+      }
+    }
+
+    mat-card-content {
+      padding: 24px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .form-row {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 20px;
+
+          .form-field {
+            flex: 1;
+            min-width: 200px;
+
+            &.full-width {
+              flex: 100%;
+            }
+
+            mat-form-field {
+              width: 100%;
+
+              .mat-mdc-form-field-subscript-wrapper {
+                font-size: 12px;
+              }
+
+              input, textarea {
+                font-size: 14px;
+              }
+
+              &.mat-mdc-form-field-has-error {
+                .mat-mdc-form-field-wrapper {
+                  padding-bottom: 0;
+                }
+              }
+            }
+          }
+        }
+
+        .form-actions {
+          display: flex;
+          justify-content: flex-end;
+          gap: 12px;
+          margin-top: 24px;
+          
+          button {
+            min-width: 120px;
+            height: 45px;
+
+            mat-icon {
+              margin-right: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .customer-form-container {
+    padding: 10px;
+
+    mat-card {
+      mat-card-content {
+        padding: 16px;
+
+        form {
+          .form-row {
+            flex-direction: column;
+            
+            .form-field {
+              width: 100%;
+            }
+          }
+
+          .form-actions {
+            flex-direction: column;
+            
+            button {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// RTL Support
+:host-context([dir="rtl"]) {
+  .customer-form-container {
+    mat-card {
+      mat-card-content {
+        form {
+          .form-actions {
+            button {
+              mat-icon {
+                margin-right: 0;
+                margin-left: 8px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 

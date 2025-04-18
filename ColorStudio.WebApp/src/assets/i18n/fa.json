@@ -1,0 +1,241 @@
+{
+  "common": {
+    "save": "ذخیره",
+    "cancel": "انصراف",
+    "close": "بستن",
+    "select": "انتخاب",
+    "delete": "حذف",
+    "edit": "ویرایش",
+    "view": "مشاهده",
+    "search": "جستجو",
+    "loading": "در حال بارگذاری...",
+    "noData": "اطلاعاتی یافت نشد",
+    "language": "زبان",
+    "logoAlt": "لوگوی کالر استودیو",
+    "actions": "عملیات",
+    "update": "به‌روزرسانی",
+    "refresh": "بازخوانی",
+    "export": "خروجی",
+    "filter": "فیلتر",
+    "filterPlaceholder": "جستجو در تمام فیلدها...",
+    "searchPlaceholder": "جستجو...",
+    "minutes": "دقیقه",
+    "pagination": {
+      "itemsPerPage": "تعداد در هر صفحه",
+      "nextPage": "صفحه بعد",
+      "previousPage": "صفحه قبل",
+      "firstPage": "صفحه اول",
+      "lastPage": "صفحه آخر",
+      "rangeLabel": "{{startIndex}} - {{endIndex}} از {{length}}"
+    },
+    "amount": "مبلغ",
+    "selectPage": "انتخاب صفحه"
+  },
+  "validation": {
+    "required": "این فیلد الزامی است",
+    "email": "ایمیل نامعتبر است",
+    "minLength": "حداقل {{min}} کاراکتر وارد کنید",
+    "maxLength": "حداکثر {{max}} کاراکتر وارد کنید",
+    "pattern": "فرمت وارد شده نامعتبر است",
+    "invalidHexCode": "کد رنگ نامعتبر است",
+    "range": "مقدار باید بین {{min}} و {{max}} باشد"
+  },
+  "auth": {
+    "login": "ورود",
+    "logout": "خروج",
+    "username": "نام کاربری",
+    "password": "رمز عبور",
+    "forgotPassword": "فراموشی رمز عبور",
+    "resetPassword": "بازنشانی رمز عبور",
+    "usernameRequired": "نام کاربری الزامی است",
+    "passwordRequired": "رمز عبور الزامی است",
+    "invalidCredentials": "نام کاربری یا رمز عبور نامعتبر است",
+    "forgotPasswordDescription": "ایمیل خود را وارد کنید تا لینک بازنشانی رمز عبور برای شما ارسال شود.",
+    "emailRequired": "ایمیل الزامی است",
+    "emailInvalid": "لطفاً یک ایمیل معتبر وارد کنید",
+    "sendResetLink": "ارسال لینک بازنشانی",
+    "resetLinkSent": "لینک بازنشانی ارسال شد",
+    "checkEmail": "لطفاً ایمیل خود را برای دریافت لینک بازنشانی رمز عبور بررسی کنید",
+    "backToLogin": "بازگشت به صفحه ورود"
+  },
+  "menu": {
+    "home": "خانه",
+    "dashboard": "داشبورد",
+    "customers": "مشتریان",
+    "colors": "رنگ‌ها",
+    "services": "خدمات"
+  },
+  "customer": {
+    "title": "مشتریان",
+    "add": "افزودن مشتری",
+    "edit": "ویرایش مشتری",
+    "details": "جزئیات مشتری",
+    "addCustomer": "افزودن مشتری",
+    "firstName": "نام",
+    "lastName": "نام خانوادگی",
+    "phoneNumber": "شماره تلفن",
+    "email": "ایمیل",
+    "birthDate": "تاریخ تولد",
+    "address": "آدرس",
+    "notes": "یادداشت‌ها",
+    "information": "اطلاعات",
+    "appointments": "نوبت‌ها",
+    "history": "تاریخچه",
+    "gender": {
+      "title": "جنسیت",
+      "male": "مرد",
+      "female": "زن",
+      "other": "سایر"
+    },
+    "skintype": {
+      "title": "نوع پوست",
+      "normal": "معمولی",
+      "dry": "خشک",
+      "oily": "چرب",
+      "combination": "مختلط",
+      "sensitive": "حساس"
+    },
+    "hairtypes": {
+      "title": "نوع مو",
+      "normal": "معمولی",
+      "dry": "خشک",
+      "oily": "چرب",
+      "damaged": "آسیب دیده",
+      "colortreated": "رنگ شده"
+    },
+    "allergies": "حساسیت‌ها",
+    "membershipLevel": "سطح عضویت",
+    "membershipRegular": "معمولی",
+    "membershipSilver": "نقره‌ای",
+    "membershipGold": "طلایی",
+    "membershipPlatinum": "پلاتینیوم",
+    "newAllergy": "حساسیت جدید",
+    "profileImage": "تصویر پروفایل",
+    "active": "فعال",
+    "status": "وضعیت",
+    "totalVisits": "تعداد مراجعات",
+    "totalSpent": "مجموع هزینه",
+    "lastVisit": "آخرین مراجعه",
+    "customerList": "مشتریان",
+    "name": "نام",
+    "statusActive": "فعال",
+    "statusInactive": "غیرفعال",
+    "selectPage": "انتخاب صفحه مشتریان",
+    "confirmDelete": "آیا از حذف این مشتری اطمینان دارید؟",
+    "phone": "تلفن",
+    "lastVisitDate": "آخرین مراجعه",
+    "membershiplevels": {
+      "regular": "معمولی",
+      "silver": "نقره‌ای",
+      "gold": "طلایی",
+      "platinum": "پلاتینیوم"
+    },
+    "membership": {
+      "bronze": "عضو برنزی",
+      "silver": "عضو نقره‌ای",
+      "gold": "عضو طلایی",
+      "platinum": "عضو پلاتینیوم"
+    }
+  },
+  "color": {
+    "title": "رنگ‌ها",
+    "add": "افزودن رنگ",
+    "edit": "ویرایش رنگ",
+    "name": "نام رنگ",
+    "hexCode": "کد رنگ",
+    "code": "کد رنگ",
+    "brand": "برند",
+    "category": {
+      "title": "دسته‌بندی",
+      "all": "همه دسته‌بندی‌ها",
+      "hair": "رنگ‌های مو",
+      "nails": "رنگ‌های ناخن",
+      "skin": "رنگ‌های پوست",
+      "makeup": "رنگ‌های آرایشی"
+    },
+    "description": "توضیحات",
+    "active": "فعال",
+    "inStock": "موجود در انبار",
+    "outOfStock": "ناموجود",
+    "preview": "پیش‌نمایش",
+    "popularity": "محبوبیت",
+    "imageUrl": "آدرس تصویر",
+    "selectPage": "انتخاب صفحه رنگ‌ها",
+    "allCategories": "همه دسته‌بندی‌ها",
+    "pickColor": "انتخاب رنگ",
+    "uploadImage": "آپلود تصویر",
+    "takePhoto": "گرفتن عکس",
+    "stockStatus": "وضعیت موجودی",
+    "confirmDelete": "آیا از حذف این رنگ اطمینان دارید؟",
+    "imageSelected": "تصویر انتخاب شد",
+    "photoTaken": "عکس گرفته شد",
+    "errors": {
+      "cameraAccess": "خطا در دسترسی به دوربین",
+      "imageProcessing": "خطا در پردازش تصویر",
+      "loadFailed": "خطا در بارگذاری رنگ",
+      "saveFailed": "خطا در ذخیره رنگ",
+      "imageUploadFailed": "خطا در آپلود تصویر",
+      "cameraAccessFailed": "خطا در دسترسی به دوربین"
+    }
+  },
+  "service": {
+    "title": "خدمات",
+    "add": "افزودن خدمت",
+    "edit": "ویرایش خدمت",
+    "name": "نام خدمت",
+    "description": "توضیحات",
+    "price": "قیمت",
+    "duration": "مدت زمان",
+    "category": "دسته‌بندی",
+    "categories": {
+      "hair": "مو",
+      "skin": "پوست",
+      "nails": "ناخن",
+      "makeup": "آرایش"
+    }
+  },
+  "dashboard": {
+    "totalCustomers": "تعداد کل مشتریان",
+    "totalAppointments": "تعداد کل نوبت‌ها",
+    "totalRevenue": "درآمد کل",
+    "totalServices": "تعداد کل خدمات",
+    "recentAppointments": "نوبت‌های اخیر",
+    "popularServices": "خدمات محبوب",
+    "customer": "مشتری",
+    "service": "خدمت",
+    "date": "تاریخ",
+    "status": "وضعیت",
+    "serviceName": "نام خدمت",
+    "category": "دسته‌بندی",
+    "bookings": "تعداد نوبت‌ها",
+    "revenue": "مجموع درآمد",
+    "itemsPerPage": "تعداد در هر صفحه",
+    "selectAppointmentPage": "انتخاب صفحه نوبت‌ها",
+    "selectServicePage": "انتخاب صفحه خدمات",
+    "appointmentStatus": {
+      "scheduled": "برنامه‌ریزی شده",
+      "confirmed": "تایید شده",
+      "completed": "انجام شده",
+      "cancelled": "لغو شده",
+      "noshow": "عدم حضور"
+    }
+  },
+  "appointment": {
+    "status": {
+      "scheduled": "برنامه‌ریزی شده",
+      "completed": "انجام شده",
+      "cancelled": "لغو شده",
+      "no_show": "عدم حضور"
+    },
+    "staff": "کارمند",
+    "price": "قیمت"
+  },
+  "history": {
+    "type": {
+      "appointment": "نوبت",
+      "purchase": "خرید",
+      "membership_change": "تغییر عضویت",
+      "note": "یادداشت"
+    }
+  }
+} 

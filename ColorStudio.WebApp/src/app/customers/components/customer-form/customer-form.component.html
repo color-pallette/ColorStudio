@@ -1,0 +1,152 @@
+<div class="customer-form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        {{ (customer ? 'customer.edit' : 'customer.add') | translate }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+        <!-- Personal Information -->
+        <div class="form-row">
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.firstName' | translate }}</mat-label>
+              <input matInput formControlName="firstName" required>
+              <mat-error *ngIf="customerForm.get('firstName')?.errors?.['required']">
+                {{ 'validation.required' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.lastName' | translate }}</mat-label>
+              <input matInput formControlName="lastName" required>
+              <mat-error *ngIf="customerForm.get('lastName')?.errors?.['required']">
+                {{ 'validation.required' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.phoneNumber' | translate }}</mat-label>
+              <input matInput formControlName="phoneNumber" required>
+              <mat-error *ngIf="customerForm.get('phoneNumber')?.errors?.['required']">
+                {{ 'validation.required' | translate }}
+              </mat-error>
+              <mat-error *ngIf="customerForm.get('phoneNumber')?.errors?.['pattern']">
+                {{ 'validation.invalidphone' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.email' | translate }}</mat-label>
+              <input matInput formControlName="email" type="email">
+              <mat-error *ngIf="customerForm.get('email')?.errors?.['email']">
+                {{ 'validation.email' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.birthDate' | translate }}</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="birthDate">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.gender.title' | translate }}</mat-label>
+              <mat-select formControlName="gender">
+                <mat-option *ngFor="let gender of genders" [value]="gender.toLowerCase()">
+                  {{ 'customer.gender.' + gender.toLowerCase() | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Address -->
+        <div class="form-row">
+          <div class="form-field full-width">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.address' | translate }}</mat-label>
+              <textarea matInput formControlName="address" rows="3"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Physical Characteristics -->
+        <div class="form-row">
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.skintype.title' | translate }}</mat-label>
+              <mat-select formControlName="skinType">
+                <mat-option *ngFor="let type of skinTypes" [value]="type.toLowerCase()">
+                  {{ 'customer.skintype.' + type.toLowerCase() | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.hairtypes.title' | translate }}</mat-label>
+              <mat-select formControlName="hairType">
+                <mat-option *ngFor="let type of hairTypes" [value]="type.toLowerCase()">
+                  {{ 'customer.hairtypes.' + type.toLowerCase() | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <!-- Additional Information -->
+        <div class="form-row">
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.membershipLevel' | translate }}</mat-label>
+              <mat-select formControlName="membershipLevel">
+                <mat-option *ngFor="let level of membershipLevels" [value]="level.toLowerCase()">
+                  {{ 'customer.membershiplevels.' + level.toLowerCase() | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="form-field">
+            <mat-form-field appearance="outline">
+              <mat-label>{{ 'customer.allergies' | translate }}</mat-label>
+              <textarea matInput formControlName="allergies" rows="2"></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button mat-button type="button" routerLink="/customers">
+            <mat-icon>close</mat-icon>
+            {{ 'common.cancel' | translate }}
+          </button>
+          <button mat-flat-button color="primary" type="submit" [disabled]="!customerForm.valid || loading">
+            <mat-icon>save</mat-icon>
+            {{ 'common.save' | translate }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  </mat-card>
+</div> 

@@ -1,0 +1,124 @@
+.color-list-container {
+  padding: 20px;
+
+  mat-card {
+    box-shadow: none !important;
+    background: transparent;
+
+    mat-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      background: transparent;
+
+      mat-card-title {
+        margin: 0;
+      }
+    }
+
+    mat-card-content {
+      mat-form-field {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+
+      table {
+        width: 100%;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+        th.mat-header-cell {
+          background: #fafafa;
+          color: rgba(0, 0, 0, 0.87);
+          font-weight: 500;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        td.mat-cell {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .mat-column-actions {
+          width: 120px;
+          text-align: center;
+        }
+
+        .mat-column-inStock {
+          width: 80px;
+          text-align: center;
+        }
+
+        .mat-column-hexCode {
+          width: 150px;
+          
+          .color-preview {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            margin-right: 8px;
+            vertical-align: middle;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+          }
+
+          span {
+            vertical-align: middle;
+          }
+        }
+
+        .mat-column-code {
+          width: 100px;
+        }
+
+        tr.mat-row:hover {
+          background-color: rgba(0, 0, 0, 0.02);
+        }
+      }
+
+      mat-paginator {
+        margin-top: 20px;
+        background: transparent;
+      }
+    }
+  }
+}
+
+// RTL Support
+:host-context([dir="rtl"]) {
+  .color-list-container {
+    mat-card {
+      mat-card-content {
+        table {
+          .mat-column-hexCode {
+            .color-preview {
+              margin-right: 0;
+              margin-left: 8px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.status-text {
+  margin-right: 8px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+.color-preview {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: middle;
+} 

@@ -1,0 +1,53 @@
+<div class="home-container">
+  <!-- Category Filter -->
+  <div class="category-filter">
+    <mat-chip-listbox>
+      <mat-chip-option
+        [selected]="!selectedCategory"
+        (click)="filterByCategory(null)"
+      >
+        {{ 'color.allCategories' | translate }}
+      </mat-chip-option>
+      <mat-chip-option
+        *ngFor="let category of categories"
+        [selected]="selectedCategory === category"
+        (click)="filterByCategory(category)"
+      >
+        {{ 'color.category.' + category | translate }}
+      </mat-chip-option>
+    </mat-chip-listbox>
+  </div>
+
+  <!-- Colors Grid -->
+  <div class="colors-container" *ngIf="!loading && !error">
+    <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16">
+      <mat-grid-tile *ngFor="let color of colors">
+        <mat-card class="color-card">
+          <div class="color-preview" [style.background-color]="color.hexCode"></div>
+          <mat-card-content>
+            <h3>{{ color.name }}</h3>
+            <p class="color-code">{{ color.hexCode }}</p>
+            <p class="color-brand" *ngIf="color.brandName">{{ color.brandName }}</p>
+            <mat-chip-listbox>
+              <mat-chip>{{ 'color.category.' + color.categoryName | translate }}</mat-chip>
+              <mat-chip [color]="color.inStock ? 'accent' : 'warn'">
+                {{ (color.inStock ? 'color.inStock' : 'color.outOfStock') | translate }}
+              </mat-chip>
+            </mat-chip-listbox>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+
+  <!-- Loading Spinner -->
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner></mat-spinner>
+  </div>
+
+  <!-- Error Message -->
+  <div class="error-container" *ngIf="error">
+    <mat-icon color="warn">error</mat-icon>
+    <p>{{ error }}</p>
+  </div>
+</div> 

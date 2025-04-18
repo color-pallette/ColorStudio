@@ -1,0 +1,94 @@
+<div class="color-list-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ 'menu.colors' | translate }}</mat-card-title>
+      <button mat-raised-button color="primary" (click)="addNewColor()">
+        {{ 'color.add' | translate }}
+      </button>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>{{ 'common.filter' | translate }}</mat-label>
+        <input matInput (keyup)="applyFilter($event)" [placeholder]="'common.filterPlaceholder' | translate" #input>
+      </mat-form-field>
+
+      <table mat-table [dataSource]="dataSource" matSort>
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'color.name' | translate }}</th>
+          <td mat-cell *matCellDef="let color">{{color.name}}</td>
+        </ng-container>
+
+        <!-- Code Column -->
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'color.code' | translate }}</th>
+          <td mat-cell *matCellDef="let color">{{color.code}}</td>
+        </ng-container>
+
+        <!-- Color Preview Column -->
+        <ng-container matColumnDef="hexCode">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'color.preview' | translate }}</th>
+          <td mat-cell *matCellDef="let color">
+            <div class="color-preview" [style.background-color]="color.hexCode"></div>
+            <span>{{color.hexCode}}</span>
+          </td>
+        </ng-container>
+
+        <!-- Brand Column -->
+        <ng-container matColumnDef="brandName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'color.brand' | translate }}</th>
+          <td mat-cell *matCellDef="let color">{{color.brandName}}</td>
+        </ng-container>
+
+        <!-- Category Column -->
+        <ng-container matColumnDef="categoryName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'color.category.title' | translate }}</th>
+          <td mat-cell *matCellDef="let color">{{ 'color.category.' + color.categoryName | translate }}</td>
+        </ng-container>
+
+        <!-- Stock Status Column -->
+        <ng-container matColumnDef="inStock">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'color.stockStatus' | translate }}</th>
+          <td mat-cell *matCellDef="let color">
+            <mat-icon [ngStyle]="{'color': color.inStock ? '#4caf50' : '#f44336'}">
+              {{color.inStock ? 'check_circle' : 'cancel'}}
+            </mat-icon>
+            <span class="status-text">{{ (color.inStock ? 'color.inStock' : 'color.outOfStock') | translate }}</span>
+          </td>
+        </ng-container>
+
+        <!-- Actions Column -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>{{ 'common.actions' | translate }}</th>
+          <td mat-cell *matCellDef="let color">
+            <button mat-icon-button color="primary" (click)="editColor(color.id)" [matTooltip]="'common.edit' | translate">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="viewColorDetails(color.id)" [matTooltip]="'common.view' | translate">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <button mat-icon-button color="warn" (click)="deleteColor(color.id)" [matTooltip]="'common.delete' | translate">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <!-- Row shown when there is no matching data -->
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="7">{{ 'common.noData' | translate }}</td>
+        </tr>
+      </table>
+
+      <mat-paginator 
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        [pageSize]="10"
+        showFirstLastButtons="true"
+        [attr.aria-label]="'common.pagination.itemsPerPage' | translate">
+      </mat-paginator>
+    </mat-card-content>
+  </mat-card>
+</div> 

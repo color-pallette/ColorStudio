@@ -1,0 +1,62 @@
+<mat-sidenav-container class="sidenav-container" *ngIf="isAuthenticated">
+  <mat-sidenav #sidenav mode="side" opened class="sidenav">
+    <div class="sidenav-header">
+      <div class="logo-container">
+        <img src="assets/images/makeup-logo.png" alt="ColorStudio Logo" class="logo">
+        <div class="sparkles">
+          <span class="sparkle">✨</span>
+          <span class="sparkle">✨</span>
+          <span class="sparkle">✨</span>
+        </div>
+      </div>
+      <h1>{{ title }}</h1>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item *ngFor="let item of menuItems" 
+         [routerLink]="item.path" 
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{exact: true}">
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <span matListItemTitle>{{ item.label | translate }}</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="toggleSidenav(sidenav)">
+        <mat-icon>menu</mat-icon>
+      </button>
+      
+      <img src="assets/images/makeup-logo.png" alt="ColorStudio Logo" class="toolbar-logo">
+      <span class="app-title">ColorStudio</span>
+
+      <span class="toolbar-spacer"></span>
+      
+      <button mat-button [matMenuTriggerFor]="languageMenu">
+        <mat-icon>language</mat-icon>
+        {{ 'common.language' | translate }}
+      </button>
+      <mat-menu #languageMenu="matMenu">
+        <button mat-menu-item (click)="switchLanguage('fa')">فارسی</button>
+        <button mat-menu-item (click)="switchLanguage('en')">English</button>
+      </mat-menu>
+
+      <button mat-icon-button [matMenuTriggerFor]="userMenu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <mat-menu #userMenu="matMenu">
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>{{ 'auth.logout' | translate }}</span>
+        </button>
+      </mat-menu>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<router-outlet *ngIf="!isAuthenticated"></router-outlet> 

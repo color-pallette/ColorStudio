@@ -1,0 +1,287 @@
+/* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Custom Theme Colors */
+:root {
+  --primary-color: #dd3273;
+  --primary-light: #c4124f;
+  --primary-dark: #800030;
+  --accent-color: #1a1a1a;
+  --accent-light: #333333;
+  --accent-dark: #000000;
+  --background-color: #0a0a0a;
+  --text-color: #ffffff;
+  --text-light: #cccccc;
+}
+
+/* Override Material Input Styles */
+.mat-form-field {
+  .mat-input-element {
+    color: var(--text-color) !important;
+  }
+  
+  &.mat-focused {
+    .mat-input-element {
+      color: var(--text-color) !important;
+    }
+  }
+}
+
+.mat-form-field-appearance-outline {
+  .mat-form-field-outline {
+    color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .mat-form-field-outline-thick {
+    color: var(--text-color);
+  }
+  
+  .mat-form-field-label {
+    color: rgba(255, 255, 255, 0.6);
+  }
+  
+  &.mat-focused {
+    .mat-form-field-label {
+      color: var(--text-color);
+    }
+  }
+}
+
+/* Global Styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: radial-gradient(circle at top right, 
+              var(--primary-color) 0%, 
+              var(--primary-dark) 30%, 
+              var(--accent-dark) 70%);
+  color: var(--text-color);
+  min-height: 100vh;
+}
+
+/* Material Overrides */
+.mat-toolbar.mat-primary {
+  background: linear-gradient(to right, var(--accent-dark) 0%, var(--primary-color) 100%);
+  box-shadow: 0 2px 8px rgba(163, 1, 62, 0.5);
+}
+
+.mat-button.mat-primary,
+.mat-raised-button.mat-primary,
+.mat-flat-button.mat-primary {
+  background: linear-gradient(to right, var(--primary-color) 0%, var(--primary-dark) 100%);
+  &:hover {
+    background: linear-gradient(to right, var(--primary-light) 0%, var(--primary-color) 100%);
+  }
+}
+
+.mat-progress-spinner circle {
+  stroke: var(--primary-color);
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark) 100%);
+  color: var(--text-color);
+}
+
+/* Custom Classes */
+.page-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 24px;
+  color: var(--text-color);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.card-container {
+  background: linear-gradient(145deg, 
+              rgba(26, 26, 26, 0.9) 0%,
+              rgba(163, 1, 62, 0.1) 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(163, 1, 62, 0.3);
+  padding: 24px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(163, 1, 62, 0.2);
+  transition: all 0.3s ease;
+
+  &:hover {
+    box-shadow: 0 8px 30px rgba(163, 1, 62, 0.4);
+    background: linear-gradient(145deg, 
+                rgba(26, 26, 26, 0.95) 0%,
+                rgba(163, 1, 62, 0.15) 100%);
+  }
+}
+
+/* Form Styles */
+.form-container {
+  max-width: 600px;
+  margin: 0 auto;
+
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 16px;
+    margin-top: 24px;
+  }
+}
+
+/* Global Table Styles */
+.mat-card,
+.table-container {
+  box-shadow: none !important;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.mat-table {
+  width: 100%;
+  background: transparent !important;
+  box-shadow: none !important;
+
+  .mat-header-cell {
+    color: var(--text-color) !important;
+    font-weight: 500;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+    background: transparent !important;
+  }
+
+  .mat-cell {
+    color: var(--text-color) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+  }
+
+  .mat-row {
+    background: transparent !important;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: rgba(255, 255, 255, 0.05) !important;
+    }
+  }
+}
+
+.mat-paginator {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: var(--text-color) !important;
+
+  .mat-paginator-container {
+    color: var(--text-color) !important;
+  }
+
+  .mat-paginator-page-size-label,
+  .mat-paginator-range-label {
+    color: var(--text-color) !important;
+  }
+
+  .mat-select-value,
+  .mat-select-arrow {
+    color: var(--text-color) !important;
+  }
+
+  .mat-icon-button {
+    color: var(--text-color) !important;
+  }
+}
+
+/* Remove all elevations */
+.mat-elevation-z8,
+.mat-elevation-z4,
+.mat-elevation-z2,
+.mat-elevation-z1 {
+  box-shadow: none !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  .mat-form-field-appearance-outline .mat-form-field-suffix {
+    padding-left: 0;
+    padding-right: 0.5em;
+  }
+
+  .mat-form-field-appearance-outline .mat-form-field-prefix {
+    padding-right: 0;
+    padding-left: 0.5em;
+  }
+
+  .mat-mdc-paginator-navigation-previous {
+    transform: rotate(180deg);
+  }
+
+  .mat-mdc-paginator-navigation-next {
+    transform: rotate(180deg);
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: linear-gradient(to bottom,
+              var(--accent-dark) 0%,
+              var(--accent-light) 100%);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom,
+              var(--primary-color) 0%,
+              var(--primary-dark) 100%);
+  border-radius: 4px;
+  
+  &:hover {
+    background: linear-gradient(to bottom,
+                var(--primary-light) 0%,
+                var(--primary-color) 100%);
+  }
+}
+
+/* Loading Styles */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center,
+              rgba(163, 1, 62, 0.3) 0%,
+              rgba(10, 10, 10, 0.95) 100%);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+/* Animation Classes */
+.fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+} 
