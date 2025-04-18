@@ -20,24 +20,22 @@
 
   <!-- Colors Grid -->
   <div class="colors-container" *ngIf="!loading && !error">
-    <mat-grid-list cols="4" rowHeight="1:1" gutterSize="16">
-      <mat-grid-tile *ngFor="let color of colors">
-        <mat-card class="color-card">
-          <div class="color-preview" [style.background-color]="color.hexCode"></div>
-          <mat-card-content>
-            <h3>{{ color.name }}</h3>
-            <p class="color-code">{{ color.hexCode }}</p>
-            <p class="color-brand" *ngIf="color.brandName">{{ color.brandName }}</p>
-            <mat-chip-listbox>
-              <mat-chip>{{ 'color.category.' + color.categoryName | translate }}</mat-chip>
-              <mat-chip [color]="color.inStock ? 'accent' : 'warn'">
-                {{ (color.inStock ? 'color.inStock' : 'color.outOfStock') | translate }}
-              </mat-chip>
-            </mat-chip-listbox>
-          </mat-card-content>
-        </mat-card>
-      </mat-grid-tile>
-    </mat-grid-list>
+    <div class="colors-grid">
+      <div *ngFor="let color of colors" class="color-item">
+        <div class="color-circle" [style.background-color]="color.hexCode"></div>
+        <div class="color-details">
+          <h3 class="color-name">{{ color.name }}</h3>
+          <div class="color-meta">
+            <span class="brand-name" *ngIf="color.brandName">{{ color.brandName }}</span>
+            <span class="category">{{ 'color.category.' + color.categoryName | translate }}</span>
+          </div>
+          <div class="stock-status" [class.in-stock]="color.inStock">
+            <mat-icon>{{ color.inStock ? 'check_circle' : 'remove_circle' }}</mat-icon>
+            <span>{{ (color.inStock ? 'color.inStock' : 'color.outOfStock') | translate }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Loading Spinner -->
