@@ -1,4 +1,8 @@
+@import '../../../shared/styles/common-list-styles.scss';
+
 .customer-list-container {
+  @extend .list-container;
+
   padding: 20px;
 
   mat-card {

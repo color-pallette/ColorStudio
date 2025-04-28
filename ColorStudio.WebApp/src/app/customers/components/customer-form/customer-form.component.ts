@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { CustomerService } from '../../services/customer.service';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Customer } from '../../../models/customer.model';
 
 @Component({
   selector: 'app-customer-form',
@@ -12,13 +13,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class CustomerFormComponent implements OnInit {
   customerForm: FormGroup;
-  customer: any;
+  customer?: Customer;
   loading = false;
 
-  genders = ['male', 'female', 'other'];
-  skinTypes = ['normal', 'dry', 'oily', 'combination', 'sensitive'];
-  hairTypes = ['normal', 'dry', 'oily', 'damaged', 'colortreated'];
-  membershipLevels = ['regular', 'silver', 'gold', 'platinum'];
+  genders = ['MALE', 'FEMALE', 'OTHER'];
+  skinTypes = ['NORMAL', 'DRY', 'OILY', 'COMBINATION', 'SENSITIVE'];
+  hairTypes = ['NORMAL', 'DRY', 'OILY', 'DAMAGED', 'COLORTREATED'];
+  membershipLevels = ['BRONZE', 'SILVER', 'GOLD', 'PLATINUM'];
 
   constructor(
     private fb: FormBuilder,
@@ -31,15 +32,18 @@ export class CustomerFormComponent implements OnInit {
     this.customerForm = this.fb.group({
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
-      phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9\+\-\(\)]{10,}$/)]],
+      phone: ['', [Validators.required, Validators.pattern(/^[0-9\+\-\(\)]{10,}$/)]],
       email: ['', [Validators.email]],
       birthDate: [null],
       gender: [null],
       address: [''],
       skinType: [null],
       hairType: [null],
-      membershipLevel: ['regular'],
-      allergies: ['']
+      membershipLevel: ['BRONZE'],
+      allergies: [''],
+      isActive: [true],
+      totalVisits: [0],
+      totalSpent: [0]
     });
   }
 
@@ -47,19 +51,32 @@ export class CustomerFormComponent implements OnInit {
     const id = this.route.snapshot.params['id'];
     if (id) {
       this.loading = true;
-      this.customerService.getCustomer(id).subscribe({
+      this.customerService.getCustomer(+id).subscribe({
         next: (customer) => {
+          if (!customer) {
+            this.snackBar.open(
+              this.translate.instant('common.errors.notFound'),
+              this.translate.instant('common.close'),
+              { duration: 3000 }
+            );
+            this.router.navigate(['/customers']);
+            return;
+          }
           this.customer = customer;
-          this.customerForm.patchValue(customer);
+          this.customerForm.patchValue({
+            ...customer,
+            allergies: customer.allergies?.join(', ') || ''
+          });
           this.loading = false;
         },
         error: (error) => {
           this.loading = false;
           this.snackBar.open(
-            this.translate.instant('customer.errors.loadFailed'),
+            this.translate.instant('common.errors.loadFailed'),
             this.translate.instant('common.close'),
             { duration: 3000 }
           );
+          this.router.navigate(['/customers']);
         }
       });
     }
@@ -68,17 +85,24 @@ export class CustomerFormComponent implements OnInit {
   onSubmit(): void {
     if (this.customerForm.valid) {
       this.loading = true;
-      const customerData = this.customerForm.value;
+      const formValue = this.customerForm.value;
       
+      const customerData = {
+        ...formValue,
+        allergies: formValue.allergies ? formValue.allergies.split(',').map((a: string) => a.trim()) : [],
+        createdAt: this.customer?.createdAt || new Date(),
+        updatedAt: new Date()
+      } as Customer;
+
       const operation = this.customer
-        ? this.customerService.updateCustomer(this.customer.id, customerData)
+        ? this.customerService.updateCustomer({ ...customerData, id: this.customer.id })
         : this.customerService.createCustomer(customerData);
 
       operation.subscribe({
         next: () => {
           this.loading = false;
           this.snackBar.open(
-            this.translate.instant(this.customer ? 'customer.updateSuccess' : 'customer.createSuccess'),
+            this.translate.instant(this.customer ? 'common.updateSuccess' : 'common.createSuccess'),
             this.translate.instant('common.close'),
             { duration: 3000 }
           );
@@ -87,7 +111,7 @@ export class CustomerFormComponent implements OnInit {
         error: (error) => {
           this.loading = false;
           this.snackBar.open(
-            this.translate.instant('customer.errors.saveFailed'),
+            this.translate.instant('common.errors.saveFailed'),
             this.translate.instant('common.close'),
             { duration: 3000 }
           );

@@ -1,0 +1,102 @@
+.list-container {
+  padding: 20px;
+
+  mat-card {
+    box-shadow: none !important;
+    background: transparent;
+
+    mat-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      background: transparent;
+
+      mat-card-title {
+        margin: 0;
+      }
+    }
+
+    mat-card-content {
+      .filters {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+
+        .search-field {
+          flex: 2;
+        }
+
+        .type-filter {
+          flex: 1;
+        }
+      }
+
+      table {
+        width: 100%;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+
+        th.mat-header-cell {
+          background: #fafafa;
+          color: rgba(0, 0, 0, 0.87);
+          font-weight: 500;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+        }
+
+        td.mat-cell {
+          border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+        }
+
+        .mat-column-actions {
+          width: 80px;
+          text-align: center;
+        }
+
+        .mat-column-status {
+          width: 80px;
+          text-align: center;
+        }
+
+        tr.mat-row:hover {
+          background-color: rgba(0, 0, 0, 0.02);
+        }
+      }
+
+      mat-paginator {
+        margin-top: 20px;
+        background: transparent;
+      }
+    }
+  }
+}
+
+// Status icons
+mat-icon {
+  &.active {
+    color: #4caf50;
+  }
+
+  &.inactive {
+    color: #f44336;
+  }
+}
+
+// RTL Support
+:host-context([dir="rtl"]) {
+  .list-container {
+    mat-card {
+      mat-card-content {
+        table {
+          .mat-column-price,
+          .mat-column-totalVisits,
+          .mat-column-totalSpent {
+            text-align: left;
+          }
+        }
+      }
+    }
+  }
+} 

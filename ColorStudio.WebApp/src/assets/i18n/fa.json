@@ -29,7 +29,23 @@
       "rangeLabel": "{{startIndex}} - {{endIndex}} از {{length}}"
     },
     "amount": "مبلغ",
-    "selectPage": "انتخاب صفحه"
+    "selectPage": "انتخاب صفحه",
+    "status": "وضعیت",
+    "active": "فعال",
+    "inactive": "غیرفعال",
+    "confirmDelete": "آیا از حذف این مورد اطمینان دارید؟",
+    "deleteSuccess": "با موفقیت حذف شد",
+    "errors": {
+      "loadFailed": "خطا در بارگذاری اطلاعات",
+      "saveFailed": "خطا در ذخیره‌سازی",
+      "deleteFailed": "خطا در حذف",
+      "required": "این فیلد الزامی است"
+    },
+    "price": "قیمت",
+    "duration": "مدت زمان",
+    "description": "توضیحات",
+    "backToList": "بازگشت به لیست",
+    "create": "ایجاد"
   },
   "validation": {
     "required": "این فیلد الزامی است",
@@ -63,7 +79,8 @@
     "dashboard": "داشبورد",
     "customers": "مشتریان",
     "colors": "رنگ‌ها",
-    "services": "خدمات"
+    "beautyServices": "خدمات زیبایی",
+    "appointments": "نوبت‌دهی"
   },
   "customer": {
     "title": "مشتریان",
@@ -79,29 +96,46 @@
     "address": "آدرس",
     "notes": "یادداشت‌ها",
     "information": "اطلاعات",
-    "appointments": "نوبت‌ها",
-    "history": "تاریخچه",
     "gender": {
-      "title": "جنسیت",
-      "male": "مرد",
-      "female": "زن",
-      "other": "سایر"
+      "FEMALE": "زن",
+      "MALE": "مرد",
+      "OTHER": "سایر"
     },
-    "skintype": {
-      "title": "نوع پوست",
-      "normal": "معمولی",
-      "dry": "خشک",
-      "oily": "چرب",
-      "combination": "مختلط",
-      "sensitive": "حساس"
+    "skinTypes": {
+      "NORMAL": "معمولی",
+      "DRY": "خشک",
+      "OILY": "چرب",
+      "COMBINATION": "مختلط",
+      "SENSITIVE": "حساس"
     },
-    "hairtypes": {
-      "title": "نوع مو",
-      "normal": "معمولی",
-      "dry": "خشک",
-      "oily": "چرب",
-      "damaged": "آسیب دیده",
-      "colortreated": "رنگ شده"
+    "hairTypes": {
+      "STRAIGHT": "صاف",
+      "WAVY": "موج‌دار",
+      "CURLY": "فر",
+      "DAMAGED": "آسیب دیده",
+      "COLORTREATED": "رنگ شده"
+    },
+    "appointments": {
+      "title": "نوبت‌ها",
+      "noAppointments": "هیچ نوبتی یافت نشد",
+      "status": {
+        "SCHEDULED": "برنامه‌ریزی شده",
+        "COMPLETED": "انجام شده",
+        "CANCELLED": "لغو شده",
+        "NO_SHOW": "عدم حضور"
+      }
+    },
+    "history": {
+      "title": "تاریخچه",
+      "noHistory": "هیچ تاریخچه‌ای یافت نشد",
+      "type": {
+        "APPOINTMENT": "نوبت",
+        "PAYMENT": "پرداخت",
+        "SERVICE": "خدمات",
+        "PURCHASE": "خرید",
+        "MEMBERSHIP_CHANGE": "تغییر عضویت",
+        "NOTE": "یادداشت"
+      }
     },
     "allergies": "حساسیت‌ها",
     "membershipLevel": "سطح عضویت",
@@ -124,12 +158,6 @@
     "confirmDelete": "آیا از حذف این مشتری اطمینان دارید؟",
     "phone": "تلفن",
     "lastVisitDate": "آخرین مراجعه",
-    "membershiplevels": {
-      "regular": "معمولی",
-      "silver": "نقره‌ای",
-      "gold": "طلایی",
-      "platinum": "پلاتینیوم"
-    },
     "membership": {
       "bronze": "عضو برنزی",
       "silver": "عضو نقره‌ای",
@@ -221,14 +249,49 @@
     }
   },
   "appointment": {
+    "title": "نوبت‌ها",
+    "bookNew": "رزرو نوبت جدید",
+    "book": "رزرو نوبت",
+    "date": "تاریخ",
+    "timeSlot": "ساعت",
+    "staff": "کارمند",
+    "notes": "یادداشت‌ها",
     "status": {
       "scheduled": "برنامه‌ریزی شده",
       "completed": "انجام شده",
       "cancelled": "لغو شده",
       "no_show": "عدم حضور"
     },
-    "staff": "کارمند",
-    "price": "قیمت"
+    "complete": "تکمیل نوبت",
+    "cancel": "لغو نوبت",
+    "confirmCancel": "آیا از لغو این نوبت اطمینان دارید؟",
+    "noAppointments": "هیچ نوبتی یافت نشد",
+    "selectPage": "انتخاب صفحه نوبت‌ها",
+    "createSuccess": "نوبت با موفقیت ثبت شد",
+    "cancelSuccess": "نوبت با موفقیت لغو شد",
+    "completeSuccess": "نوبت با موفقیت تکمیل شد",
+    "errors": {
+      "createFailed": "خطا در ثبت نوبت",
+      "loadFailed": "خطا در بارگذاری نوبت‌ها",
+      "cancelFailed": "خطا در لغو نوبت",
+      "completeFailed": "خطا در تکمیل نوبت",
+      "loadServicesFailed": "خطا در بارگذاری خدمات",
+      "loadCustomerFailed": "خطا در بارگذاری اطلاعات مشتری"
+    },
+    "form": {
+      "title": "فرم نوبت",
+      "customer": "مشتری",
+      "service": "خدمت",
+      "date": "تاریخ",
+      "time": "ساعت",
+      "staff": "کارمند",
+      "notes": "یادداشت‌ها",
+      "price": "قیمت",
+      "startTime": "ساعت شروع",
+      "endTime": "ساعت پایان"
+    },
+    "editTitle": "ویرایش نوبت",
+    "createTitle": "ایجاد نوبت جدید"
   },
   "history": {
     "type": {
@@ -236,6 +299,50 @@
       "purchase": "خرید",
       "membership_change": "تغییر عضویت",
       "note": "یادداشت"
+    }
+  },
+  "beautyServices": {
+    "title": "خدمات زیبایی",
+    "add": "افزودن خدمت",
+    "edit": "ویرایش خدمت",
+    "name": "نام",
+    "description": "توضیحات",
+    "price": "قیمت",
+    "duration": "مدت زمان (دقیقه)",
+    "type": "نوع خدمت",
+    "types": {
+      "NAIL": "خدمات ناخن",
+      "HAIR": "خدمات مو",
+      "FACE": "خدمات صورت",
+      "BODY": "خدمات بدن",
+      "MAKEUP": "خدمات آرایش"
+    },
+    "isActive": "فعال",
+    "backToList": "بازگشت به لیست",
+    "details": "جزئیات خدمت",
+    "createSuccess": "خدمت با موفقیت ایجاد شد",
+    "updateSuccess": "خدمت با موفقیت به‌روزرسانی شد",
+    "errors": {
+      "saveFailed": "خطا در ذخیره‌سازی خدمت"
+    },
+    "details": {
+      "serviceType": "نوع خدمت",
+      "statistics": "آمار",
+      "averageRating": "میانگین امتیاز",
+      "totalBookings": "تعداد رزروها",
+      "lastBooking": "آخرین رزرو",
+      "importantNotes": "نکات مهم",
+      "requirements": "پیش‌نیازها",
+      "benefits": "مزایا",
+      "preparationNotes": "نکات آماده‌سازی",
+      "aftercareInstructions": "دستورالعمل‌های مراقبت پس از خدمت"
+    },
+    "categories": {
+      "HAIR": "مو",
+      "NAIL": "ناخن",
+      "FACE": "صورت",
+      "BODY": "بدن",
+      "MAKEUP": "آرایش"
     }
   }
 } 

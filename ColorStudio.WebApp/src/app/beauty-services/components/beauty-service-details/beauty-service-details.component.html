@@ -1,0 +1,99 @@
+<div class="container" *ngIf="!loading">
+  <div class="header">
+    <h1>{{ service?.name }}</h1>
+    <button mat-raised-button color="primary" routerLink="/beauty-services">
+      {{ 'beautyServices.backToList' | translate }}
+    </button>
+  </div>
+
+  <div class="content" *ngIf="service">
+    <div class="basic-info">
+      <div class="info-item">
+        <span class="label">{{ 'beautyServices.details.serviceType' | translate }}</span>
+        <span class="value">{{ 'beautyServices.categories.' + service.type | translate }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">{{ 'common.price' | translate }}</span>
+        <span class="value">{{ service.price | currency:'IRR' }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">{{ 'common.duration' | translate }}</span>
+        <span class="value">{{ service.duration }} {{ 'common.minutes' | translate }}</span>
+      </div>
+      <div class="info-item">
+        <span class="label">{{ 'common.status' | translate }}</span>
+        <span class="value" [class.active]="service.isActive" [class.inactive]="!service.isActive">
+          {{ (service.isActive ? 'common.active' : 'common.inactive') | translate }}
+        </span>
+      </div>
+    </div>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ 'common.description' | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>{{ service.description }}</p>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ 'beautyServices.details.statistics' | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="info-item">
+          <span class="label">{{ 'beautyServices.details.averageRating' | translate }}</span>
+          <span class="value">{{ service.averageRating | number:'1.1-1' }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">{{ 'beautyServices.details.totalBookings' | translate }}</span>
+          <span class="value">{{ service.totalBookings }}</span>
+        </div>
+        <div class="info-item">
+          <span class="label">{{ 'beautyServices.details.lastBooking' | translate }}</span>
+          <span class="value">{{ service.lastBookingDate | date }}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>{{ 'beautyServices.details.importantNotes' | translate }}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="info-item">
+          <span class="label">{{ 'beautyServices.details.requirements' | translate }}</span>
+          <div class="value">
+            <ul>
+              <li *ngFor="let req of service.requirements">{{ req }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="label">{{ 'beautyServices.details.benefits' | translate }}</span>
+          <div class="value">
+            <ul>
+              <li *ngFor="let benefit of service.benefits">{{ benefit }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <span class="label">{{ 'beautyServices.details.preparationNotes' | translate }}</span>
+          <div class="value">{{ service.preparationNotes }}</div>
+        </div>
+
+        <div class="info-item">
+          <span class="label">{{ 'beautyServices.details.aftercareInstructions' | translate }}</span>
+          <div class="value">{{ service.aftercareInstructions }}</div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>
+
+<div class="loading" *ngIf="loading">
+  <mat-spinner></mat-spinner>
+</div> 

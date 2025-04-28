@@ -1,0 +1,94 @@
+<div class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        {{ 'appointment.form.title' | translate }}
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()">
+        <div class="form-row">
+          <!-- Customer -->
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'appointment.form.customer' | translate }}</mat-label>
+            <input matInput formControlName="customerSearch" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayCustomer">
+              <mat-option *ngFor="let customer of filteredCustomers$ | async" [value]="customer" (onSelectionChange)="onCustomerSelected(customer)">
+                {{ customer.firstName }} {{ customer.lastName }}
+              </mat-option>
+            </mat-autocomplete>
+            <button matSuffix mat-icon-button type="button" (click)="createNewCustomer()">
+              <mat-icon>person_add</mat-icon>
+            </button>
+          </mat-form-field>
+          <!-- Service -->
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'appointment.form.service' | translate }}</mat-label>
+            <mat-select formControlName="serviceId">
+              <mat-option *ngFor="let service of services" [value]="service.id">
+                {{ service.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="appointmentForm.get('serviceId')?.hasError('required')">
+              {{ 'validation.required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <!-- Date -->
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'appointment.form.date' | translate }}</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <mat-error *ngIf="appointmentForm.get('date')?.hasError('required')">
+              {{ 'validation.required' | translate }}
+            </mat-error>
+          </mat-form-field>
+          <!-- Time -->
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'appointment.form.time' | translate }}</mat-label>
+            <mat-select formControlName="timeSlot">
+              <mat-option *ngFor="let slot of availableTimeSlots" [value]="slot">
+                {{ slot }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="appointmentForm.get('timeSlot')?.hasError('required')">
+              {{ 'validation.required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <!-- Staff -->
+          <mat-form-field appearance="outline">
+            <mat-label>{{ 'appointment.form.staff' | translate }}</mat-label>
+            <mat-select formControlName="staffName">
+              <mat-option *ngFor="let staff of availableStaff" [value]="staff">
+                {{ staff }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="appointmentForm.get('staffName')?.hasError('required')">
+              {{ 'validation.required' | translate }}
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="form-row">
+          <!-- Notes -->
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'appointment.form.notes' | translate }}</mat-label>
+            <textarea matInput formControlName="notes" rows="3"></textarea>
+          </mat-form-field>
+        </div>
+        <div class="form-actions">
+          <button mat-button type="button" routerLink="/appointments" [disabled]="loading">
+            {{ 'common.cancel' | translate }}
+          </button>
+          <button mat-flat-button color="primary" type="submit" [disabled]="!appointmentForm.valid || loading">
+            <mat-icon>save</mat-icon>
+            {{ 'common.save' | translate }}
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+    <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+  </mat-card> 

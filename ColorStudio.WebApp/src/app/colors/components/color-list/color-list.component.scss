@@ -1,4 +1,8 @@
+@import '../../../shared/styles/common-list-styles.scss';
+
 .color-list-container {
+  @extend .list-container;
+
   padding: 20px;
 
   mat-card {
@@ -55,7 +59,6 @@
           width: 150px;
           
           .color-preview {
-            display: inline-block;
             width: 24px;
             height: 24px;
             border-radius: 4px;

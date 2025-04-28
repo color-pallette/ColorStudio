@@ -8,6 +8,15 @@ import { ColorListComponent } from './components/color-list/color-list.component
 import { ColorFormComponent } from './components/color-form/color-form.component';
 import { ColorPickerDialogComponent } from './components/color-picker-dialog/color-picker-dialog.component';
 import { ColorService } from './services/color.service';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
@@ -20,7 +29,16 @@ import { ColorService } from './services/color.service';
     ReactiveFormsModule,
     TranslateModule,
     SharedModule,
-    ColorsRoutingModule
+    ColorsRoutingModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatMenuModule
   ],
   providers: [
     ColorService

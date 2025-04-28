@@ -33,6 +33,16 @@ const routes: Routes = [
     loadChildren: () => import('./customers/customers.module').then(m => m.CustomersModule)
   },
   {
+    path: 'beauty-services',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./beauty-services/beauty-services.module').then(m => m.BeautyServicesModule)
+  },
+  {
+    path: 'appointments',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./appointments/appointments.module').then(m => m.AppointmentsModule)
+  },
+  {
     path: '**',
     redirectTo: 'home'
   }

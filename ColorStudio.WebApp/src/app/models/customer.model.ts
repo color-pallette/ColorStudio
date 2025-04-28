@@ -7,17 +7,18 @@ export interface Customer {
   name?: string; // computed from firstName + lastName
   email: string;
   phone: string;
-  birthDate?: Date;
-  gender?: 'MALE' | 'FEMALE' | 'OTHER';
-  address?: string;
+  birthDate: Date;
+  gender: string;
+  address: string;
   profileImageUrl?: string;
-  membershipLevel: 'BRONZE' | 'SILVER' | 'GOLD' | 'PLATINUM';
+  membershipLevel: string;
+  isVerified: boolean;
   totalVisits: number;
   totalSpent: number;
-  lastVisitDate?: Date;
+  lastVisitDate: Date;
   isActive: boolean;
-  skinType?: string;
-  hairType?: string;
+  skinType: string;
+  hairType: string;
   allergies?: string[];
   notes?: string;
   createdAt: Date;
@@ -42,12 +43,12 @@ export interface CustomerAppointment {
 export interface CustomerHistory {
   id: number;
   customerId: number;
-  type: 'APPOINTMENT' | 'PURCHASE' | 'MEMBERSHIP_CHANGE' | 'NOTE';
+  type: 'APPOINTMENT' | 'PAYMENT' | 'SERVICE' | 'PURCHASE' | 'MEMBERSHIP_CHANGE' | 'NOTE';
   date: Date;
   description: string;
   amount?: number;
   staffId?: number;
   staffName?: string;
   relatedEntityId?: number;
-  relatedEntityType?: string;
+  relatedEntityType?: 'SERVICE' | 'PAYMENT' | 'MEMBERSHIP' | 'CANCELLATION';
 } 

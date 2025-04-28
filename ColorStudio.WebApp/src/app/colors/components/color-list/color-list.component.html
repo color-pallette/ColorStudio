@@ -49,28 +49,35 @@
 
         <!-- Stock Status Column -->
         <ng-container matColumnDef="inStock">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'color.stockStatus' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef>{{ 'common.status' | translate }}</th>
           <td mat-cell *matCellDef="let color">
-            <mat-icon [ngStyle]="{'color': color.inStock ? '#4caf50' : '#f44336'}">
-              {{color.inStock ? 'check_circle' : 'cancel'}}
+            <mat-icon [class.active]="color.inStock" [class.inactive]="!color.inStock">
+              {{ color.inStock ? 'check_circle' : 'cancel' }}
             </mat-icon>
-            <span class="status-text">{{ (color.inStock ? 'color.inStock' : 'color.outOfStock') | translate }}</span>
           </td>
         </ng-container>
 
         <!-- Actions Column -->
         <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef>{{ 'common.actions' | translate }}</th>
+          <th mat-header-cell *matHeaderCellDef></th>
           <td mat-cell *matCellDef="let color">
-            <button mat-icon-button color="primary" (click)="editColor(color.id)" [matTooltip]="'common.edit' | translate">
-              <mat-icon>edit</mat-icon>
+            <button mat-icon-button [matMenuTriggerFor]="menu">
+              <mat-icon>more_vert</mat-icon>
             </button>
-            <button mat-icon-button color="primary" (click)="viewColorDetails(color.id)" [matTooltip]="'common.view' | translate">
-              <mat-icon>visibility</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="deleteColor(color.id)" [matTooltip]="'common.delete' | translate">
-              <mat-icon>delete</mat-icon>
-            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="viewColorDetails(color.id)">
+                <mat-icon>visibility</mat-icon>
+                <span>{{ 'common.view' | translate }}</span>
+              </button>
+              <button mat-menu-item (click)="editColor(color.id)">
+                <mat-icon>edit</mat-icon>
+                <span>{{ 'common.edit' | translate }}</span>
+              </button>
+              <button mat-menu-item (click)="deleteColor(color.id)">
+                <mat-icon>delete</mat-icon>
+                <span>{{ 'common.delete' | translate }}</span>
+              </button>
+            </mat-menu>
           </td>
         </ng-container>
 

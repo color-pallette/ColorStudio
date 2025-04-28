@@ -85,6 +85,6 @@ export class ColorListComponent implements OnInit {
   }
 
   viewColorDetails(id: number): void {
-    this.router.navigate(['/colors', id]);
+    this.router.navigate(['/colors/details', id]);
   }
 } 

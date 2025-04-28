@@ -1,0 +1,248 @@
+.form-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+
+  mat-card {
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+
+    mat-card-header {
+      padding: 16px 24px;
+      border-radius: 8px 8px 0 0;
+      margin: -16px -16px 16px -16px;
+
+      mat-card-title {
+        font-size: 24px;
+        margin: 0;
+        color: #e91e63;
+        font-weight: 500;
+      }
+    }
+
+    mat-card-content {
+      padding: 24px;
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        .form-row {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+
+          &.full-width {
+            grid-column: 1 / -1;
+          }
+
+          mat-form-field {
+            width: 100%;
+
+            &.full-width {
+              grid-column: 1 / -1;
+            }
+
+            .mat-mdc-form-field-subscript-wrapper {
+              font-size: 12px;
+            }
+
+            input, textarea {
+              font-size: 14px;
+            }
+
+            &.mat-mdc-form-field-has-error {
+              .mat-mdc-form-field-wrapper {
+                padding-bottom: 0;
+              }
+            }
+          }
+
+          .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+
+            @media (max-width: 600px) {
+              grid-template-columns: 1fr;
+            }
+          }
+
+          .status-row {
+            display: flex;
+            gap: 24px;
+            margin: 16px 0;
+            padding: 16px;
+            background: rgba(0, 0, 0, 0.03);
+            border-radius: 4px;
+
+            mat-slide-toggle {
+              flex: 1;
+              
+              ::ng-deep .mdc-switch {
+                &.mdc-switch--selected {
+                  .mdc-switch__track {
+                    background-color: #e91e63;
+                  }
+                  .mdc-switch__handle {
+                    background-color: #fff;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .image-actions {
+          display: flex;
+          gap: 16px;
+          margin: 16px 0;
+
+          button {
+            flex: 1;
+            height: 45px;
+            
+            mat-icon {
+              margin-inline-end: 8px;
+            }
+
+            &:hover {
+              background-color: rgba(233, 30, 99, 0.04);
+            }
+          }
+        }
+
+        .camera-preview {
+          position: relative;
+          margin-bottom: 16px;
+          border-radius: 8px;
+          overflow: hidden;
+
+          video {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+          }
+
+          .camera-actions {
+            position: absolute;
+            bottom: 16px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 16px;
+            z-index: 2;
+            
+            button {
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+              &.mat-primary {
+                background-color: #e91e63;
+              }
+
+              &:hover {
+                transform: scale(1.05);
+              }
+            }
+          }
+        }
+
+        .form-actions {
+          display: flex;
+          justify-content: flex-end;
+          gap: 12px;
+          margin-top: 24px;
+          
+          button {
+            min-width: 100px;
+
+            mat-icon {
+              margin-inline-end: 8px;
+            }
+
+            &.mat-flat-button.mat-primary {
+              background-color: #e91e63;
+            }
+
+            &:hover {
+              opacity: 0.9;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// RTL Support
+:host-context([dir="rtl"]) {
+  .form-container {
+    mat-card {
+      mat-card-content {
+        form {
+          .form-row {
+            .status-row {
+              mat-slide-toggle {
+                ::ng-deep .mdc-switch {
+                  .mdc-switch__track {
+                    direction: rtl;
+                  }
+                }
+              }
+            }
+          }
+
+          .image-actions,
+          .form-actions {
+            button {
+              mat-icon {
+                margin-right: 0;
+                margin-left: 8px;
+              }
+            }
+          }
+
+          .camera-preview {
+            .camera-actions {
+              direction: rtl;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Dark Mode Support
+:host-context(.dark-theme) {
+  .form-container {
+    mat-card {
+      background-color: rgba(48, 48, 48, 0.9);
+
+      mat-card-header {
+        mat-card-title {
+          color: #ff4081;
+        }
+      }
+
+      mat-card-content {
+        form {
+          .form-row {
+            .status-row {
+              background: rgba(255, 255, 255, 0.05);
+            }
+          }
+
+          .form-actions {
+            button.mat-flat-button.mat-primary {
+              background-color: #ff4081;
+            }
+          }
+        }
+      }
+    }
+  }
+} 

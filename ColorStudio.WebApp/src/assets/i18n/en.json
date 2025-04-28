@@ -29,7 +29,21 @@
       "rangeLabel": "{{startIndex}} - {{endIndex}} of {{length}}"
     },
     "amount": "Amount",
-    "selectPage": "Select page"
+    "selectPage": "Select page",
+    "status": "Status",
+    "active": "Active",
+    "inactive": "Inactive",
+    "confirmDelete": "Are you sure you want to delete this item?",
+    "deleteSuccess": "Successfully deleted",
+    "errors": {
+      "loadFailed": "Failed to load data",
+      "saveFailed": "Failed to save",
+      "deleteFailed": "Failed to delete",
+      "required": "This field is required"
+    },
+    "description": "Description",
+    "backToList": "Back to List",
+    "create": "Create"
   },
   "validation": {
     "required": "This field is required",
@@ -64,13 +78,15 @@
     "dashboard": "Dashboard",
     "customers": "Customers",
     "colors": "Colors",
-    "services": "Services"
+    "beautyServices": "Beauty Services",
+    "appointments": "Appointments"
   },
   "customer": {
     "title": "Customers",
     "add": "Add Customer",
     "edit": "Edit Customer",
     "details": "Customer Details",
+    "addCustomer": "Add Customer",
     "firstName": "First Name",
     "lastName": "Last Name",
     "phoneNumber": "Phone Number",
@@ -79,56 +95,76 @@
     "address": "Address",
     "notes": "Notes",
     "information": "Information",
-    "appointments": "Appointments",
-    "history": "History",
     "gender": {
-      "title": "Gender",
-      "male": "Male",
-      "female": "Female",
-      "other": "Other"
+      "FEMALE": "Female",
+      "MALE": "Male",
+      "OTHER": "Other"
     },
-    "skintype": {
-      "title": "Skin Type",
-      "normal": "Normal",
-      "dry": "Dry",
-      "oily": "Oily",
-      "combination": "Combination",
-      "sensitive": "Sensitive"
+    "skinTypes": {
+      "NORMAL": "Normal",
+      "DRY": "Dry",
+      "OILY": "Oily",
+      "COMBINATION": "Combination",
+      "SENSITIVE": "Sensitive"
     },
-    "hairtypes": {
-      "title": "Hair Type",
-      "normal": "Normal",
-      "dry": "Dry",
-      "oily": "Oily",
-      "damaged": "Damaged",
-      "colortreated": "Color Treated"
+    "hairTypes": {
+      "STRAIGHT": "Straight",
+      "WAVY": "Wavy",
+      "CURLY": "Curly",
+      "DAMAGED": "Damaged",
+      "COLORTREATED": "Color Treated"
+    },
+    "appointments": {
+      "title": "Appointments",
+      "noAppointments": "No appointments found",
+      "status": {
+        "SCHEDULED": "Scheduled",
+        "COMPLETED": "Completed",
+        "CANCELLED": "Cancelled",
+        "NO_SHOW": "No Show"
+      }
+    },
+    "history": {
+      "title": "History",
+      "noHistory": "No history found",
+      "type": {
+        "APPOINTMENT": "Appointment",
+        "PAYMENT": "Payment",
+        "SERVICE": "Service",
+        "PURCHASE": "Purchase",
+        "MEMBERSHIP_CHANGE": "Membership Change",
+        "NOTE": "Note"
+      }
     },
     "allergies": "Allergies",
+    "membershipLevel": "Membership Level",
+    "membershipRegular": "Regular",
+    "membershipSilver": "Silver",
+    "membershipGold": "Gold",
+    "membershipPlatinum": "Platinum",
+    "newAllergy": "New Allergy",
+    "profileImage": "Profile Image",
+    "active": "Active",
+    "status": "Status",
+    "totalVisits": "Total Visits",
+    "totalSpent": "Total Spent",
+    "lastVisit": "Last Visit",
+    "customerList": "Customers",
+    "name": "Name",
+    "statusActive": "Active",
+    "statusInactive": "Inactive",
+    "selectPage": "Select Customers Page",
+    "confirmDelete": "Are you sure you want to delete this customer?",
+    "phone": "Phone",
+    "lastVisitDate": "Last Visit Date",
     "membership": {
       "bronze": "Bronze Member",
       "silver": "Silver Member",
       "gold": "Gold Member",
       "platinum": "Platinum Member"
     },
-    "status": "Status",
-    "statusActive": "Active",
-    "statusInactive": "Inactive",
-    "addCustomer": "Add Customer",
-    "editCustomer": "Edit Customer",
-    "deleteCustomer": "Delete Customer",
-    "confirmDelete": "Are you sure you want to delete this customer?",
-    "customerList": "Customers",
-    "name": "Name",
-    "phone": "Phone",
-    "membershipLevel": "Membership Level",
-    "totalVisits": "Total Visits",
-    "lastVisitDate": "Last Visit Date",
-    "membershiplevels": {
-      "regular": "Regular",
-      "silver": "Silver",
-      "gold": "Gold",
-      "platinum": "Platinum"
-    }
+    "search": "Search Customer",
+    "searchPlaceholder": "Enter customer name or phone number..."
   },
   "color": {
     "title": "Colors",
@@ -193,7 +229,8 @@
       "skin": "Skin",
       "nails": "Nails",
       "makeup": "Makeup"
-    }
+    },
+    "select": "Select Service"
   },
   "dashboard": {
     "totalCustomers": "Total Customers",
@@ -222,14 +259,49 @@
     }
   },
   "appointment": {
+    "title": "Appointments",
+    "bookNew": "Book New Appointment",
+    "book": "Book Appointment",
+    "date": "Date",
+    "timeSlot": "Time Slot",
+    "staff": "Staff Member",
+    "notes": "Notes",
     "status": {
       "scheduled": "Scheduled",
       "completed": "Completed",
       "cancelled": "Cancelled",
       "no_show": "No Show"
     },
-    "staff": "Staff",
-    "price": "Price"
+    "complete": "Complete Appointment",
+    "cancel": "Cancel Appointment",
+    "confirmCancel": "Are you sure you want to cancel this appointment?",
+    "noAppointments": "No appointments found",
+    "selectPage": "Select appointments page",
+    "createSuccess": "Appointment booked successfully",
+    "cancelSuccess": "Appointment cancelled successfully",
+    "completeSuccess": "Appointment completed successfully",
+    "errors": {
+      "createFailed": "Failed to book appointment",
+      "loadFailed": "Failed to load appointments",
+      "cancelFailed": "Failed to cancel appointment",
+      "completeFailed": "Failed to complete appointment",
+      "loadServicesFailed": "Failed to load services",
+      "loadCustomerFailed": "Failed to load customer details"
+    },
+    "form": {
+      "title": "Appointment Form",
+      "customer": "Customer",
+      "service": "Service",
+      "date": "Date",
+      "time": "Time",
+      "staff": "Staff Member",
+      "notes": "Notes",
+      "price": "Price",
+      "startTime": "Start Time",
+      "endTime": "End Time"
+    },
+    "editTitle": "Edit Appointment",
+    "createTitle": "Create New Appointment"
   },
   "history": {
     "type": {
@@ -237,6 +309,43 @@
       "purchase": "Purchase",
       "membership_change": "Membership Change",
       "note": "Note"
+    }
+  },
+  "beautyServices": {
+    "title": "Beauty Services",
+    "add": "Add Service",
+    "edit": "Edit Service",
+    "name": "Name",
+    "description": "Description",
+    "price": "Price",
+    "duration": "Duration (minutes)",
+    "type": "Service Type",
+    "isActive": "Active",
+    "backToList": "Back to List",
+    "details": {
+      "serviceType": "Service Type",
+      "statistics": "Statistics",
+      "averageRating": "Average Rating",
+      "totalBookings": "Total Bookings",
+      "lastBooking": "Last Booking",
+      "importantNotes": "Important Notes",
+      "requirements": "Requirements",
+      "benefits": "Benefits",
+      "preparationNotes": "Preparation Notes",
+      "aftercareInstructions": "Aftercare Instructions"
+    },
+    "categories": {
+      "HAIR": "Hair",
+      "NAIL": "Nail",
+      "FACE": "Face",
+      "BODY": "Body",
+      "MAKEUP": "Makeup"
+    },
+    "createSuccess": "Service created successfully",
+    "updateSuccess": "Service updated successfully",
+    "errors": {
+      "loadFailed": "Failed to load service",
+      "saveFailed": "Failed to save service"
     }
   }
 } 

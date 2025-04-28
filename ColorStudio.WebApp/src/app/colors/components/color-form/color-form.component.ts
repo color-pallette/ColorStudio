@@ -45,10 +45,10 @@ export class ColorFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const colorId = this.route.snapshot.params['id'];
-    if (colorId) {
+    const id = this.route.snapshot.params['id'];
+    if (id) {
       this.loading = true;
-      this.colorService.getColor(colorId).subscribe({
+      this.colorService.getColor(+id).subscribe({
         next: (color) => {
           this.color = color;
           this.colorForm.patchValue({

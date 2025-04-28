@@ -1,0 +1,239 @@
+.appointment-calendar-container {
+  padding: 24px;
+  position: relative;
+  min-height: 400px;
+
+  mat-card {
+    mat-card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+
+      .header-actions {
+        button {
+          mat-icon {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+
+    mat-card-content {
+      display: flex;
+      gap: 24px;
+
+      .calendar-container {
+        flex: 1;
+        max-width: 400px;
+      }
+
+      .appointments-list {
+        flex: 2;
+        min-width: 0;
+
+        h3 {
+          margin: 0 0 16px;
+          color: rgba(0, 0, 0, 0.87);
+        }
+
+        .appointment-card {
+          display: flex;
+          align-items: flex-start;
+          padding: 16px;
+          margin-bottom: 16px;
+          background: white;
+          border-radius: 4px;
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+          .appointment-time {
+            min-width: 120px;
+            margin-right: 16px;
+
+            .time {
+              display: block;
+              font-weight: 500;
+              margin-bottom: 8px;
+            }
+
+            .status-badge {
+              display: inline-block;
+              padding: 4px 8px;
+              border-radius: 4px;
+              font-size: 12px;
+              font-weight: 500;
+
+              &.scheduled {
+                background-color: #e3f2fd;
+                color: #1976d2;
+              }
+
+              &.completed {
+                background-color: #e8f5e9;
+                color: #2e7d32;
+              }
+
+              &.cancelled {
+                background-color: #ffebee;
+                color: #c62828;
+              }
+
+              &.no_show {
+                background-color: #fafafa;
+                color: #616161;
+              }
+            }
+          }
+
+          .appointment-details {
+            flex: 1;
+            min-width: 0;
+
+            h4 {
+              margin: 0 0 8px;
+              color: rgba(0, 0, 0, 0.87);
+            }
+
+            p {
+              margin: 0 0 4px;
+              color: rgba(0, 0, 0, 0.6);
+            }
+          }
+
+          .appointment-actions {
+            margin-left: 16px;
+          }
+        }
+
+        .no-appointments {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          padding: 48px;
+          color: #666;
+
+          mat-icon {
+            font-size: 48px;
+            width: 48px;
+            height: 48px;
+            margin-bottom: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.loading-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+
+  .error-message {
+    color: #d32f2f;
+    font-size: 16px;
+    margin: 0;
+  }
+}
+
+// RTL Support
+:host-context([dir="rtl"]) {
+  .header-actions {
+    button {
+      mat-icon {
+        margin-right: 0;
+        margin-left: 8px;
+      }
+    }
+  }
+
+  .appointment-card {
+    .appointment-time {
+      margin-right: 0;
+      margin-left: 16px;
+    }
+
+    .appointment-actions {
+      margin-left: 0;
+      margin-right: 16px;
+    }
+  }
+}
+
+// Dark Mode Support
+:host-context(.dark-theme) {
+  .appointment-calendar-container {
+    mat-card {
+      background: #1e1e1e;
+
+      mat-card-content {
+        .appointments-list {
+          h3 {
+            color: rgba(255, 255, 255, 0.87);
+          }
+
+          .appointment-card {
+            background: #2d2d2d;
+
+            .appointment-details {
+              h4 {
+                color: rgba(255, 255, 255, 0.87);
+              }
+
+              p {
+                color: rgba(255, 255, 255, 0.6);
+              }
+            }
+
+            .status-badge {
+              &.scheduled {
+                background-color: #1a3f5f;
+                color: #90caf9;
+              }
+
+              &.completed {
+                background-color: #1b4d1b;
+                color: #81c784;
+              }
+
+              &.cancelled {
+                background-color: #621b1b;
+                color: #ef9a9a;
+              }
+
+              &.no_show {
+                background-color: #424242;
+                color: #bdbdbd;
+              }
+            }
+          }
+
+          .no-appointments {
+            color: #bdbdbd;
+          }
+        }
+      }
+    }
+  }
+
+  .loading-container {
+    background: rgba(0, 0, 0, 0.7);
+  }
+} 

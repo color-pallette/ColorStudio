@@ -1,0 +1,46 @@
+<div class="appointment-form-dialog">
+  <h2 class="dialog-title">
+    {{ (data.appointment ? 'appointment.editTitle' : 'appointment.createTitle') | translate }}
+  </h2>
+
+  <mat-dialog-content>
+    <form [formGroup]="appointmentForm" (ngSubmit)="onSubmit()" class="edit-form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'appointment.form.customer' | translate }}</mat-label>
+        <input matInput formControlName="customerName" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'appointment.form.service' | translate }}</mat-label>
+        <input matInput formControlName="serviceName" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'appointment.form.staff' | translate }}</mat-label>
+        <input matInput formControlName="staffName" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'appointment.form.price' | translate }}</mat-label>
+        <input matInput type="number" formControlName="price" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'appointment.form.startTime' | translate }}</mat-label>
+        <input matInput type="time" formControlName="startTime" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>{{ 'appointment.form.endTime' | translate }}</mat-label>
+        <input matInput type="time" formControlName="endTime" required>
+      </mat-form-field>
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>{{ 'appointment.form.notes' | translate }}</mat-label>
+        <textarea matInput formControlName="notes" rows="2"></textarea>
+      </mat-form-field>
+      <div class="dialog-actions">
+        <button mat-button type="button" (click)="onCancel()" [disabled]="loading">
+          {{ 'common.cancel' | translate }}
+        </button>
+        <button mat-flat-button color="primary" type="submit" [disabled]="!appointmentForm.valid || loading">
+          {{ (data.appointment ? 'common.update' : 'common.create') | translate }}
+        </button>
+      </div>
+    </form>
+  </mat-dialog-content>
+</div> 

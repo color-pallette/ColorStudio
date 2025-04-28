@@ -1,0 +1,148 @@
+<div class="appointment-list-container">
+  <!-- Loading Indicator -->
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <!-- Error Message -->
+  <div class="error-container" *ngIf="error">
+    <p class="error-message">{{ error }}</p>
+    <button mat-flat-button color="primary" (click)="loadAppointments()">
+      <mat-icon>refresh</mat-icon>
+      {{ 'common.refresh' | translate }}
+    </button>
+  </div>
+
+  <!-- Content -->
+  <mat-card *ngIf="!loading && !error">
+    <mat-card-header>
+      <mat-card-title>{{ 'appointment.title' | translate }}</mat-card-title>
+      <div class="header-actions">
+        <button mat-flat-button color="primary" (click)="addAppointment()">
+          {{ 'appointment.bookNew' | translate }}
+        </button>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <!-- Filter -->
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>{{ 'common.filter' | translate }}</mat-label>
+        <input matInput (keyup)="applyFilter($event)" [placeholder]="'common.filterPlaceholder' | translate">
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+
+      <!-- Table -->
+      <div class="table-container mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource" matSort>
+          <!-- Customer Name Column -->
+          <ng-container matColumnDef="customerName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'customer.name' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let appointment">
+              {{appointment.customerName}}
+            </td>
+          </ng-container>
+
+          <!-- Service Name Column -->
+          <ng-container matColumnDef="serviceName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'service.name' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let appointment">
+              {{appointment.serviceName}}
+            </td>
+          </ng-container>
+
+          <!-- Date Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'appointment.date' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let appointment">
+              {{appointment.date | date:'mediumDate':'':'fa-IR'}}
+            </td>
+          </ng-container>
+
+          <!-- Time Column -->
+          <ng-container matColumnDef="startTime">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'appointment.timeSlot' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let appointment">
+              {{appointment.startTime}}
+            </td>
+          </ng-container>
+
+          <!-- Staff Column -->
+          <ng-container matColumnDef="staffName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'appointment.staff' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let appointment">
+              {{appointment.staffName}}
+            </td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>
+              {{ 'common.status' | translate }}
+            </th>
+            <td mat-cell *matCellDef="let appointment">
+              <span class="status-badge" [ngClass]="getStatusClass(appointment.status)">
+                {{ getStatusTranslation(appointment.status) }}
+              </span>
+            </td>
+          </ng-container>
+
+          <!-- Actions Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef></th>
+            <td mat-cell *matCellDef="let appointment">
+              <button mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item (click)="viewAppointment(appointment.id)">
+                  <mat-icon>visibility</mat-icon>
+                  <span>{{ 'common.view' | translate }}</span>
+                </button>
+                <button mat-menu-item (click)="editAppointment(appointment.id)"
+                        *ngIf="appointment.status === 'SCHEDULED'">
+                  <mat-icon>edit</mat-icon>
+                  <span>{{ 'common.edit' | translate }}</span>
+                </button>
+                <button mat-menu-item (click)="completeAppointment(appointment.id)"
+                        *ngIf="appointment.status === 'SCHEDULED'">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>{{ 'appointment.complete' | translate }}</span>
+                </button>
+                <button mat-menu-item (click)="cancelAppointment(appointment.id)"
+                        *ngIf="appointment.status === 'SCHEDULED'"
+                        color="warn">
+                  <mat-icon>cancel</mat-icon>
+                  <span>{{ 'appointment.cancel' | translate }}</span>
+                </button>
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <!-- No Data Message -->
+        <div class="no-data" *ngIf="dataSource.data.length === 0">
+          <mat-icon>event_busy</mat-icon>
+          <p>{{ 'appointment.noAppointments' | translate }}</p>
+        </div>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"
+                      [attr.aria-label]="'appointment.selectPage' | translate">
+        </mat-paginator>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div> 

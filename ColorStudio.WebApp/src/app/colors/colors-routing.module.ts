@@ -15,6 +15,10 @@ const routes: Routes = [
   {
     path: 'edit/:id',
     component: ColorFormComponent
+  },
+  {
+    path: ':id',
+    component: ColorFormComponent
   }
 ];
 

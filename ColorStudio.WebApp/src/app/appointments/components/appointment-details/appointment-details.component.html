@@ -1,0 +1,99 @@
+<div class="appointment-details-container">
+  <!-- Loading Indicator -->
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <!-- Error Message -->
+  <div class="error-container" *ngIf="error">
+    <p class="error-message">{{ error }}</p>
+    <button mat-flat-button color="primary" (click)="ngOnInit()">
+      <mat-icon>refresh</mat-icon>
+      {{ 'common.refresh' | translate }}
+    </button>
+  </div>
+
+  <!-- Content -->
+  <mat-card *ngIf="!loading && !error && appointment">
+    <mat-card-header>
+      <mat-card-title>{{ 'appointment.details.title' | translate }}</mat-card-title>
+      <div class="header-actions">
+        <button mat-flat-button color="primary" (click)="editAppointment()">
+          <mat-icon>edit</mat-icon>
+          {{ 'common.edit' | translate }}
+        </button>
+        <button mat-flat-button color="primary" (click)="backToList()">
+          <mat-icon>arrow_back</mat-icon>
+          {{ 'common.backToList' | translate }}
+        </button>
+      </div>
+    </mat-card-header>
+
+    <mat-card-content>
+      <div class="details-grid">
+        <!-- Customer Information -->
+        <div class="detail-section">
+          <h3>{{ 'customer.information' | translate }}</h3>
+          <div class="detail-item">
+            <span class="label">{{ 'customer.name' | translate }}:</span>
+            <span class="value">{{ appointment.customerName }}</span>
+          </div>
+        </div>
+
+        <!-- Service Information -->
+        <div class="detail-section">
+          <h3>{{ 'service.title' | translate }}</h3>
+          <div class="detail-item">
+            <span class="label">{{ 'service.name' | translate }}:</span>
+            <span class="value">{{ appointment.serviceName }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">{{ 'common.price' | translate }}:</span>
+            <span class="value">{{ appointment.price | currency }}</span>
+          </div>
+        </div>
+
+        <!-- Appointment Information -->
+        <div class="detail-section">
+          <h3>{{ 'appointment.details.title' | translate }}</h3>
+          <div class="detail-item">
+            <span class="label">{{ 'appointment.date' | translate }}:</span>
+            <span class="value">{{ appointment.date | date:'fullDate':'':'fa-IR' }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">{{ 'appointment.timeSlot' | translate }}:</span>
+            <span class="value">{{ appointment.startTime }} - {{ appointment.endTime }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">{{ 'appointment.staff' | translate }}:</span>
+            <span class="value">{{ appointment.staffName }}</span>
+          </div>
+          <div class="detail-item">
+            <span class="label">{{ 'common.status' | translate }}:</span>
+            <span class="status-badge" [ngClass]="appointment.status.toLowerCase()">
+              {{ 'appointment.status.' + appointment.status.toLowerCase() | translate }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Notes -->
+        <div class="detail-section" *ngIf="appointment.notes">
+          <h3>{{ 'appointment.notes' | translate }}</h3>
+          <p class="notes">{{ appointment.notes }}</p>
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="actions" *ngIf="appointment.status === AppointmentStatus.Scheduled">
+        <button mat-flat-button color="primary" (click)="completeAppointment()">
+          <mat-icon>check_circle</mat-icon>
+          {{ 'appointment.complete' | translate }}
+        </button>
+        <button mat-flat-button color="warn" (click)="cancelAppointment()">
+          <mat-icon>cancel</mat-icon>
+          {{ 'appointment.cancel' | translate }}
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div> 

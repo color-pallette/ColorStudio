@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
-import { BaseService } from '../../services/base.service';
+import { BaseService } from '../../shared/services/base.service';
 import { Color, ColorCategory } from '../../models/color.model';
 
 @Injectable({

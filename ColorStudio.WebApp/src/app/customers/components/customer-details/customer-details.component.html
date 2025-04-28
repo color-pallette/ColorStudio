@@ -1,49 +1,73 @@
-<div class="customer-details-container" *ngIf="customer">
-  <mat-card>
-    <mat-card-header>
+<div class="customer-details-container">
+  <!-- Loading Indicator -->
+  <div class="loading-container" *ngIf="loading">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+
+  <!-- Error Message -->
+  <div class="error-container" *ngIf="error">
+    <p class="error-message">{{ error }}</p>
+    <button mat-flat-button color="primary" (click)="refresh()">
+      <mat-icon>refresh</mat-icon>
+      {{ 'common.refresh' | translate }}
+    </button>
+  </div>
+
+  <!-- Content -->
+  <div *ngIf="customer && !loading">
+    <!-- Header Section -->
+    <div class="header-section">
+      <div class="back-button-container">
+        <button mat-flat-button class="back-button" (click)="goBack()">
+          {{ 'common.backToList' | translate }}
+        </button>
+      </div>
+      <div class="action-buttons">
+        <button mat-flat-button color="primary" class="book-appointment-button" (click)="bookAppointment()">
+          <mat-icon>event</mat-icon>
+          {{ 'appointment.bookNew' | translate }}
+        </button>
+        <button mat-icon-button class="refresh-button" (click)="refresh()" [disabled]="loading">
+          <mat-icon>refresh</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <!-- Customer Profile Card -->
+    <mat-card class="customer-card">
       <div class="customer-header">
-        <img [src]="customer.profileImageUrl || 'assets/images/default-profile.png'" 
-             [alt]="customer.firstName + ' ' + customer.lastName"
-             class="profile-image">
-        <div class="customer-info">
-          <mat-card-title>
-            {{ customer.firstName }} {{ customer.lastName }}
-          </mat-card-title>
-          <mat-card-subtitle>
-            <span class="membership-badge" [ngClass]="getMembershipBadgeClass()">
+        <div class="customer-avatar">
+          <img [src]="customer.profileImageUrl || 'assets/images/default-avatar.png'" alt="Customer Avatar">
+        </div>
+        <div class="customer-title">
+          <h2>{{customer.firstName}} {{customer.lastName}}</h2>
+          <div class="customer-badges">
+            <span class="membership-badge" [class]="getMembershipBadgeClass()">
               {{ 'customer.membership.' + customer.membershipLevel | translate }}
             </span>
-            <mat-icon [ngClass]="getStatusClass()">{{ getStatusIcon() }}</mat-icon>
-          </mat-card-subtitle>
+            <mat-icon class="verified-icon" *ngIf="customer.isVerified" matTooltip="{{ 'customer.verified' | translate }}">verified</mat-icon>
+          </div>
         </div>
       </div>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>more_vert</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="editCustomer()">
-          <mat-icon>edit</mat-icon>
-          <span>{{ 'common.edit' | translate }}</span>
-        </button>
-      </mat-menu>
-    </mat-card-header>
 
-    <mat-card-content>
-      <mat-tab-group [(selectedIndex)]="activeTab">
-        <!-- Information Tab -->
-        <mat-tab label="{{ 'customer.information' | translate }}">
+      <!-- Tabs Section -->
+      <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start" class="details-tabs">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span>{{ 'customer.information' | translate }}</span>
+          </ng-template>
           <div class="info-grid">
             <div class="info-item">
               <span class="label">{{ 'customer.phone' | translate }}</span>
-              <span class="value">{{ customer.phone }}</span>
+              <span class="value">{{customer.phone}}</span>
             </div>
             <div class="info-item">
               <span class="label">{{ 'customer.email' | translate }}</span>
-              <span class="value">{{ customer.email }}</span>
+              <span class="value">{{customer.email}}</span>
             </div>
             <div class="info-item">
               <span class="label">{{ 'customer.birthDate' | translate }}</span>
-              <span class="value">{{ customer.birthDate | date }}</span>
+              <span class="value">{{customer.birthDate | date:'mediumDate':'':'fa-IR'}}</span>
             </div>
             <div class="info-item">
               <span class="label">{{ 'customer.gender' | translate }}</span>
@@ -51,73 +75,118 @@
             </div>
             <div class="info-item">
               <span class="label">{{ 'customer.address' | translate }}</span>
-              <span class="value">{{ customer.address }}</span>
+              <span class="value">{{customer.address}}</span>
             </div>
             <div class="info-item">
               <span class="label">{{ 'customer.skinType' | translate }}</span>
-              <span class="value">{{ 'customer.skinType.' + customer.skinType | translate }}</span>
+              <span class="value">{{ 'customer.skinTypes.' + customer.skinType | translate }}</span>
             </div>
             <div class="info-item">
               <span class="label">{{ 'customer.hairType' | translate }}</span>
-              <span class="value">{{ 'customer.hairType.' + customer.hairType | translate }}</span>
+              <span class="value">{{ 'customer.hairTypes.' + customer.hairType | translate }}</span>
             </div>
             <div class="info-item">
-              <span class="label">{{ 'customer.allergies' | translate }}</span>
-              <div class="value">
-                <mat-chip-grid>
-                  <mat-chip-row *ngFor="let allergy of customer.allergies">
-                    {{ allergy }}
-                  </mat-chip-row>
-                </mat-chip-grid>
-              </div>
+              <span class="label">{{ 'customer.totalVisits' | translate }}</span>
+              <span class="value">{{customer.totalVisits}}</span>
             </div>
-            <div class="info-item full-width">
-              <span class="label">{{ 'customer.notes' | translate }}</span>
-              <span class="value">{{ customer.notes }}</span>
+            <div class="info-item">
+              <span class="label">{{ 'customer.totalSpent' | translate }}</span>
+              <span class="value">{{customer.totalSpent | currency:'USD':'symbol':'1.0-0'}}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">{{ 'customer.lastVisit' | translate }}</span>
+              <span class="value">{{customer.lastVisitDate | date:'mediumDate':'':'fa-IR'}}</span>
+            </div>
+            <div class="info-item full-width" *ngIf="customer.allergies?.length">
+              <span class="label">{{ 'customer.allergies' | translate }}</span>
+              <mat-chip-listbox>
+                <mat-chip-option *ngFor="let allergy of customer.allergies" [selected]="true" [disabled]="true">
+                  {{ allergy }}
+                </mat-chip-option>
+              </mat-chip-listbox>
             </div>
           </div>
         </mat-tab>
-
-        <!-- Appointments Tab -->
-        <mat-tab label="{{ 'customer.appointments' | translate }}">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span>{{ 'customer.appointments.title' | translate }}</span>
+          </ng-template>
           <div class="appointments-list">
             <mat-card *ngFor="let appointment of appointments" class="appointment-card">
-              <mat-card-header>
-                <mat-card-title>{{ appointment.serviceName }}</mat-card-title>
-                <mat-card-subtitle>
-                  {{ appointment.date | date }} {{ appointment.startTime }} - {{ appointment.endTime }}
-                </mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-                <p>{{ appointment.notes }}</p>
-                <div class="appointment-status" [ngClass]="appointment.status.toLowerCase()">
-                  {{ 'appointment.status.' + appointment.status | translate }}
+              <div class="appointment-header">
+                <div class="service-info">
+                  <h3>{{appointment.serviceName}}</h3>
+                  <span class="appointment-date">{{appointment.date | date:'medium':'':'fa-IR'}}</span>
                 </div>
-                <p>{{ 'appointment.staff' | translate }}: {{ appointment.staffName }}</p>
-                <p>{{ 'appointment.price' | translate }}: {{ appointment.price | currency }}</p>
-              </mat-card-content>
+                <span class="appointment-status" [ngClass]="appointment.status.toLowerCase()">
+                  {{ 'customer.appointments.status.' + appointment.status | translate }}
+                </span>
+              </div>
+              
+              <div class="appointment-details">
+                <div class="detail-item">
+                  <mat-icon>schedule</mat-icon>
+                  <span>{{appointment.startTime}} - {{appointment.endTime}}</span>
+                </div>
+                <div class="detail-item">
+                  <mat-icon>person</mat-icon>
+                  <span>{{appointment.staffName}}</span>
+                </div>
+                <div class="detail-item">
+                  <mat-icon>attach_money</mat-icon>
+                  <span>{{appointment.price | currency:'USD':'symbol':'1.0-0'}}</span>
+                </div>
+              </div>
+
+              <div class="appointment-notes" *ngIf="appointment.notes">
+                <mat-icon>note</mat-icon>
+                <p>{{appointment.notes}}</p>
+              </div>
             </mat-card>
+
+            <div class="no-data" *ngIf="!appointments?.length">
+              <mat-icon>event_busy</mat-icon>
+              <p>{{ 'customer.appointments.noAppointments' | translate }}</p>
+            </div>
           </div>
         </mat-tab>
-
-        <!-- History Tab -->
-        <mat-tab label="{{ 'customer.history' | translate }}">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <span>{{ 'customer.history.title' | translate }}</span>
+          </ng-template>
           <div class="history-list">
             <mat-card *ngFor="let item of history" class="history-card">
-              <mat-card-header>
-                <mat-card-title>{{ 'history.type.' + item.type | translate }}</mat-card-title>
-                <mat-card-subtitle>
-                  {{ item.date | date }} - {{ item.staffName }}
-                </mat-card-subtitle>
-              </mat-card-header>
-              <mat-card-content>
-                <p>{{ item.description }}</p>
-                <p *ngIf="item.amount">{{ 'common.amount' | translate }}: {{ item.amount | currency }}</p>
-              </mat-card-content>
+              <div class="history-header">
+                <div class="history-type">
+                  <mat-icon [ngClass]="item.type.toLowerCase()">
+                    {{getHistoryIcon(item.type)}}
+                  </mat-icon>
+                  <h3>{{ 'customer.history.type.' + item.type | translate }}</h3>
+                </div>
+                <span class="history-date">{{item.date | date:'medium':'':'fa-IR'}}</span>
+              </div>
+
+              <div class="history-content">
+                <p>{{item.description}}</p>
+                <div class="history-details" *ngIf="item.amount || item.staffName">
+                  <span *ngIf="item.amount" class="amount">
+                    {{item.amount | currency:'USD':'symbol':'1.0-0'}}
+                  </span>
+                  <span *ngIf="item.staffName" class="staff">
+                    <mat-icon>person</mat-icon>
+                    {{item.staffName}}
+                  </span>
+                </div>
+              </div>
             </mat-card>
+
+            <div class="no-data" *ngIf="!history?.length">
+              <mat-icon>history</mat-icon>
+              <p>{{ 'customer.history.noHistory' | translate }}</p>
+            </div>
           </div>
         </mat-tab>
       </mat-tab-group>
-    </mat-card-content>
-  </mat-card>
+    </mat-card>
+  </div>
 </div> 

@@ -21,7 +21,9 @@ export class AppComponent implements OnInit {
     { path: '/home', icon: 'home', label: 'menu.home' },
     { path: '/dashboard', icon: 'dashboard', label: 'menu.dashboard' },
     { path: '/customers', icon: 'people', label: 'menu.customers' },
-    { path: '/colors', icon: 'palette', label: 'menu.colors' }
+    { path: '/colors', icon: 'palette', label: 'menu.colors' },
+    { path: '/beauty-services', icon: 'spa', label: 'menu.beautyServices' },
+    { path: '/appointments', icon: 'event', label: 'menu.appointments' }
   ];
 
   constructor(

@@ -17,7 +17,8 @@ import { AppComponent } from './app.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { ColorsModule } from './colors/colors.module';
 import { CustomersModule } from './customers/customers.module';
-import { NailServicesModule } from './nail-services/nail-services.module';
+import { BeautyServicesModule } from './beauty-services/beauty-services.module';
+import { AppointmentsModule } from './appointments/appointments.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -44,7 +45,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     DashboardModule,
     ColorsModule,
     CustomersModule,
-    NailServicesModule,
+    BeautyServicesModule,
+    AppointmentsModule,
     MatToolbarModule,
     MatSidenavModule,
     MatButtonModule,

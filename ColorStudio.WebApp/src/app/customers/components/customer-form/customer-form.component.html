@@ -34,12 +34,12 @@
         <div class="form-row">
           <div class="form-field">
             <mat-form-field appearance="outline">
-              <mat-label>{{ 'customer.phoneNumber' | translate }}</mat-label>
-              <input matInput formControlName="phoneNumber" required>
-              <mat-error *ngIf="customerForm.get('phoneNumber')?.errors?.['required']">
+              <mat-label>{{ 'customer.phone' | translate }}</mat-label>
+              <input matInput formControlName="phone" required>
+              <mat-error *ngIf="customerForm.get('phone')?.errors?.['required']">
                 {{ 'validation.required' | translate }}
               </mat-error>
-              <mat-error *ngIf="customerForm.get('phoneNumber')?.errors?.['pattern']">
+              <mat-error *ngIf="customerForm.get('phone')?.errors?.['pattern']">
                 {{ 'validation.invalidphone' | translate }}
               </mat-error>
             </mat-form-field>
@@ -70,7 +70,7 @@
             <mat-form-field appearance="outline">
               <mat-label>{{ 'customer.gender.title' | translate }}</mat-label>
               <mat-select formControlName="gender">
-                <mat-option *ngFor="let gender of genders" [value]="gender.toLowerCase()">
+                <mat-option *ngFor="let gender of genders" [value]="gender">
                   {{ 'customer.gender.' + gender.toLowerCase() | translate }}
                 </mat-option>
               </mat-select>
@@ -94,7 +94,7 @@
             <mat-form-field appearance="outline">
               <mat-label>{{ 'customer.skintype.title' | translate }}</mat-label>
               <mat-select formControlName="skinType">
-                <mat-option *ngFor="let type of skinTypes" [value]="type.toLowerCase()">
+                <mat-option *ngFor="let type of skinTypes" [value]="type">
                   {{ 'customer.skintype.' + type.toLowerCase() | translate }}
                 </mat-option>
               </mat-select>
@@ -105,7 +105,7 @@
             <mat-form-field appearance="outline">
               <mat-label>{{ 'customer.hairtypes.title' | translate }}</mat-label>
               <mat-select formControlName="hairType">
-                <mat-option *ngFor="let type of hairTypes" [value]="type.toLowerCase()">
+                <mat-option *ngFor="let type of hairTypes" [value]="type">
                   {{ 'customer.hairtypes.' + type.toLowerCase() | translate }}
                 </mat-option>
               </mat-select>
@@ -119,8 +119,8 @@
             <mat-form-field appearance="outline">
               <mat-label>{{ 'customer.membershipLevel' | translate }}</mat-label>
               <mat-select formControlName="membershipLevel">
-                <mat-option *ngFor="let level of membershipLevels" [value]="level.toLowerCase()">
-                  {{ 'customer.membershiplevels.' + level.toLowerCase() | translate }}
+                <mat-option *ngFor="let level of membershipLevels" [value]="level">
+                  {{ 'customer.membership.' + level.toLowerCase() | translate }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
@@ -129,18 +129,35 @@
           <div class="form-field">
             <mat-form-field appearance="outline">
               <mat-label>{{ 'customer.allergies' | translate }}</mat-label>
-              <textarea matInput formControlName="allergies" rows="2"></textarea>
+              <mat-chip-grid #chipGrid>
+                <mat-chip-row *ngFor="let allergy of customerForm.get('allergies')?.value?.split(',')" [removable]="true" (removed)="removeAllergy(allergy)">
+                  {{allergy}}
+                  <button matChipRemove>
+                    <mat-icon>cancel</mat-icon>
+                  </button>
+                </mat-chip-row>
+                <input placeholder="{{ 'customer.newAllergy' | translate }}"
+                       [matChipInputFor]="chipGrid"
+                       [matChipInputSeparatorKeyCodes]="[13, 188]"
+                       (matChipInputTokenEnd)="addAllergy($event)">
+              </mat-chip-grid>
             </mat-form-field>
           </div>
         </div>
 
+        <div class="form-row">
+          <div class="form-field">
+            <mat-slide-toggle formControlName="isActive">
+              {{ 'customer.active' | translate }}
+            </mat-slide-toggle>
+          </div>
+        </div>
+
         <div class="form-actions">
-          <button mat-button type="button" routerLink="/customers">
-            <mat-icon>close</mat-icon>
+          <button mat-button type="button" (click)="onCancel()">
             {{ 'common.cancel' | translate }}
           </button>
           <button mat-flat-button color="primary" type="submit" [disabled]="!customerForm.valid || loading">
-            <mat-icon>save</mat-icon>
             {{ 'common.save' | translate }}
           </button>
         </div>

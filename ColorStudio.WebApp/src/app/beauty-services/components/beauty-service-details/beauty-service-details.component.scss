@@ -1,0 +1,154 @@
+.container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+
+    h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: 500;
+      color: var(--primary-color);
+    }
+  }
+
+  .content {
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    .basic-info {
+      background: white;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+      .info-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .label {
+          color: var(--text-secondary);
+          font-weight: 500;
+        }
+
+        .value {
+          &.active {
+            color: var(--success-color);
+          }
+
+          &.inactive {
+            color: var(--error-color);
+          }
+        }
+      }
+    }
+
+    mat-card {
+      margin-bottom: 24px;
+
+      mat-card-header {
+        margin-bottom: 16px;
+
+        mat-card-title {
+          font-size: 18px;
+          color: var(--primary-color);
+        }
+      }
+
+      mat-card-content {
+        color: var(--text-primary);
+
+        .info-item {
+          margin-bottom: 16px;
+
+          .label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+          }
+
+          .value {
+            ul {
+              list-style-type: none;
+              padding-left: 0;
+              margin: 0;
+
+              li {
+                padding: 8px 0;
+                border-bottom: 1px solid #eee;
+
+                &:last-child {
+                  border-bottom: none;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+// RTL Support
+:host-context([dir="rtl"]) {
+  .content {
+    .basic-info {
+      .info-item {
+        .label {
+          margin-left: 16px;
+          margin-right: 0;
+        }
+      }
+    }
+  }
+}
+
+// Dark Mode Support
+:host-context(.dark-theme) {
+  .container {
+    .content {
+      .basic-info {
+        background: var(--surface-card);
+        
+        .info-item {
+          border-bottom-color: var(--surface-border);
+        }
+      }
+
+      mat-card {
+        background: var(--surface-card);
+
+        .info-item {
+          .value {
+            ul {
+              li {
+                border-bottom-color: var(--surface-border);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+} 
